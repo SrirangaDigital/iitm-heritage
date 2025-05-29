@@ -1,0 +1,7 @@
+public/data
+public/lfh
+public/Resources
+public/pdf
+vendor/
+*.txt
+.DS*

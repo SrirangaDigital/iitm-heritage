@@ -1,0 +1,317 @@
+html, body {
+      height: 100%;
+ }
+
+.landing-page-heading{
+	font-size: 40px !important;
+	color: #000;
+}
+
+
+/*** Buttons design ****/
+a.mybutton{
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	vertical-align: middle !middle;
+	width: 223px;
+	height: 103px;
+	font-size: 24px;
+	font-weight: bold;
+	background-color: #F7B722;
+	color: #000;
+	border-radius: 20px;
+}
+
+a.mybutton:hover, a.mybutton:active{
+	background-color: #000;
+	color: #F7B722;
+}
+
+a.mybutton-incr{
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	vertical-align: middle !middle;
+	width: 49px;
+	height: 44px;
+	font-size: 24px;
+	font-weight: bold;
+	background-color: #F3F3F3;
+	color: #888;
+	border-radius: 10px !important;
+	text-decoration: none;
+}
+
+a.mybutton-incr:hover, a.mybutton-incr:active{
+	background-color: #000 !important;
+	color: #FFF;
+	text-decoration: none;
+}
+
+a.bt-type{
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	vertical-align: middle !middle;
+	font-weight: bold;
+	font-size: 17px;
+	background-color: #000;
+	color: #FFF;
+	border-radius: 10px !important;
+	margin: 10px 10px 10px 10px;
+
+}
+
+a.bt-type:hover, a.bt-type:active{
+	background-color: #000 !important;
+	color: #FFF;
+}
+
+a.bt-alumnus{
+	width: 120px;
+	height: 54px;
+}
+
+a.bt-student{
+	width: 120px;
+	height: 54px;
+}
+a.bt-faculty{
+	width: 120px;
+	height: 54px;
+}
+a.bt-staff{
+	width: 120px;
+	height: 54px;
+}
+a.bt-resident{
+	width: 120px;
+	height: 54px;
+}
+a.bt-other{
+	width: 120px;
+	height: 54px;
+}
+
+
+button.my-nxt-button, button.my-nxt-button:hover, button.my-nxt-button:focus, button.my-nxt-button:active{
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	vertical-align: middle !middle;
+	width: 177px;
+	height: 51px;
+	font-size: 24px;
+	font-weight: bold;
+	background-color: #000 !important;
+	color: #F7B722 !important;
+	border-radius: 10px;	
+	border: none !important;
+}
+
+button.my-signout-button{
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	vertical-align: middle !middle;
+	width: 177px;
+	height: 51px;
+	font-size: 24px;
+	font-weight: bold;
+	background-color: #F7B722;
+	color: #000;
+	border-radius: 10px;	
+	border: none;
+}
+
+
+img.h-image{
+	margin-top: 100px;
+	width: 200px;
+}
+
+span.coloured{
+	font-weight: bold;
+	color: #F7B722;
+}
+
+input::placeholder {
+    font-style: italic;
+		color: #514F4A !important;
+  }
+
+input {
+    font-style: normal; /* Ensures actual input text is not italic */
+  }
+
+input.textbox-bg, input.textbox-bg:focus{
+	background-color: #F3F3F3;
+	height: 45px;
+	border: 0px;
+	border-radius: 10px !important;
+	color: #000 !important;
+}
+
+  input:valid,
+  input:-webkit-autofill,
+  input:not(:placeholder-shown) {
+    background-color: #F3F3F3 !important;
+    -webkit-box-shadow: 0 0 0 30px #F3F3F3 inset !important;
+  }
+
+
+.custom-select select.select-branch-box-bg, .custom-select select.select-branch-box-bg option{
+	appearance: none !important;
+	-webkit-appearance: none !important;    /* For Safari/Chrome */
+  -moz-appearance: none !important;       /* For Firefox */
+	background-color: #F3F3F3;
+	border: 0px;
+	border-radius: 10px !important;
+	color: #000 !important;
+	cursor: pointer;
+}
+
+.custom-select select.select-branch-box-bg:focus{
+	box-shadow: none;
+}
+
+
+input.textbox-outline, input.textbox-outline:focus{
+	background-color: #FFF;
+	height: 45px;
+	border: 0.5px solid #000;
+	border-radius: 10px !important;
+	color: #333;
+}
+
+.input-group>input.txtbox-small {
+	flex: 0 1 70px;
+}
+
+.input-group>input.txtbox-small::placeholder {
+  text-align: center;         /* ensure placeholder is also centered */
+}
+
+label.label-text-info{
+	font-family: 'Inter';
+	font-size: 40px;
+	color: #000;
+}
+
+label.label-text-info-small{
+	font-family: 'Inter';
+	font-size: 24px;
+	color: #000;
+}
+
+span.big-icon i{
+	color: #95F871;
+	font-size: 105px;
+}
+
+.emptyselect{
+	color: #666 !important;
+	font-style: italic;
+}
+
+.card{
+	width: 12rem !important;
+	font-family: 'Inter';
+	background-color: #F3F3F3;
+	border: none;
+	border-radius: 15px;
+	padding: 20px;
+}
+
+.card-title{
+	font-weight: bold;
+	font-size: 24px;
+}
+
+.card-subtitle{
+	margin-top: 16px;
+	color: #B4B3B3;
+}
+
+.card-body{
+	min-height: 140px;
+}
+
+a.card-select-link{
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	vertical-align: middle !middle;
+	width: 125px;
+	height: 40px;
+	margin: 18px auto;
+	background-color: #000;
+	color: #F7B722;
+	border-radius: 20px;
+}
+
+.input-group .bi-pencil {
+  font-size: 1.2rem; /* Adjust icon size */
+  line-height: 1; /* Ensure icon stays aligned */
+}
+
+
+ 
+.checkbox-wrapper {
+			font-family: 'Inter';
+      width: 100%;
+      margin-bottom: 0.5rem;
+    }
+
+    .checkbox-input {
+      display: none;
+    }
+
+    .checkbox-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: black;
+      color: white;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+      transition: all 0.3s ease;
+    }
+
+    .checkbox-text {
+      flex: 1;
+      text-align: left;
+    }
+
+    .checkbox-tick {
+      width: 1.2rem;
+      height: 1.2rem;
+/*      border: 2px solid white;*/
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      color: black;
+      background-color: transparent;
+      transition: all 0.3s ease;
+      margin-left: 1rem;
+    }
+
+    .checkbox-input:checked + .checkbox-label {
+      background-color: white;
+      color: black;
+    }
+
+    .checkbox-input:checked + .checkbox-label .checkbox-tick {
+      background-color: white;
+/*      border-color: black;*/
+    }
+
+    .checkbox-input:checked + .checkbox-label .checkbox-tick::before {
+      content: "✔";
+      color: black;
+    }
