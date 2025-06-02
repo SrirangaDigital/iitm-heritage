@@ -9,3 +9,10 @@
         </div>
     </div>    
 </div>
+
+<script>
+  // Works if JavaScript is enabled
+  //setTimeout(function() {
+  //  window.location.href = base_url;
+  //}, 5000);
+</script>

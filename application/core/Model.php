@@ -5,7 +5,7 @@ class Model {
 	public function __construct() {
 
 		$this->db = new Database();
-		$this->dataShowFilter = (SHOW_ONLY_IF_DATA_EXISTS) ? ['$regex' => '1|External'] : ['$regex' => '0|1|External'];
+
 	}
 	
 	public function getPostData() {

@@ -9,7 +9,7 @@
             <form action="<?=BASE_URL?>data/test/13" method="POST">
                 <label for="rollnumber" class="form-label label-text-info mb-4">Enter your <span class="coloured">IITM Roll Number</span></label>
                 <div class="form-group d-flex justify-content-center align-items-center mb-5">
-                    <input type="text" class="form-control textbox-bg w-50 mx-2" id="rollnumber" name="rollnumber" placeholder="Type your IITM roll number">
+                    <input type="text" class="form-control textbox-bg w-50 mx-2" id="rollnumber" name="rollnumber" value="<?= (isset($_SESSION["formdata"]["rollnumber"]))? $_SESSION["formdata"]["rollnumber"] : '';  ?>" placeholder="Type your IITM roll number">
                     <i class="bi bi-pencil"></i>                    
                 </div>    
                 <div class="form-group my-5">

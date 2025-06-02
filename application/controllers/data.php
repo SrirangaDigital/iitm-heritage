@@ -17,7 +17,7 @@ class data extends Controller {
 		}		
 		if(isset($formData) && isset($formData['other_category'])){
 			$this->model->processFormData($formData);
-			$_SESSION['visitor_type'] = $formData['other_category']; 
+			$_SESSION['formdata']['visitor_type'] = $formData['other_category']; 
 		}
 		
 
@@ -54,8 +54,14 @@ class data extends Controller {
 			$this->view('forms/common4', $data);
 		}
 		elseif($view_type == 8){
-			$this->dumpData();
-			$this->view('forms/common5', $data);
+			$data = $this->model->normalizeData();
+			//$jsonData = json_encode($data, JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT);
+			//$this->dumpData();
+			$result = $this->insertDB($data);
+			if($result['result'])
+				$this->view('forms/common5', $result);
+			else
+				$this->view('error/signin',$result);
 		}
 		elseif($view_type == 9){
 			$_SESSION['formdata']['visitor_type'] = 'faculty';
@@ -95,7 +101,8 @@ class data extends Controller {
 		elseif($view_type == 99){
 			if(isset($_SESSION['formdata']))
 				unset($_SESSION['formdata']);
-				@header('Location: ' . BASE_URL );	
+			
+			@header('Location: ' . BASE_URL );	
 		}
 	}
 
@@ -104,6 +111,46 @@ class data extends Controller {
 			var_dump($_SESSION['formdata']);
 	}
 
+	public function setupdb(){
+
+		$db = $this->model->db->useDB();
+
+		try {
+			$collection = $this->model->db->createCollection($db, VISITOR_COLLECTION);
+			$data['result'] = true;
+			$data['msg'] = "Collection created successfully";
+		} catch (Exception $e) {
+		    $data['result'] = false;
+		    $data['msg'] = $e->getMessage();
+		}
+
+		if($data["result"])
+			$this->view('page/dbsetup',$data);
+		else	
+			$this->view('error/dbsetup',$data);
+	}
+
+	public function insertDB($data){
+
+		$db = $this->model->db->useDB();
+		$collection = $this->model->db->selectCollection($db, VISITOR_COLLECTION);
+
+
+		try {
+			$result = $collection->insertOne($data);
+			$data['result'] = true;
+		} catch (Exception $e) {
+		    $data['result'] = false;
+		    $data['msg'] = $e->getMessage();
+		}
+
+		return $data;
+
+	}
+
+	public function pagetest(){
+		$this->view('error/dbsetup');
+	}
 
 }
 

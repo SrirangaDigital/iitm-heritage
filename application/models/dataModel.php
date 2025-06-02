@@ -57,17 +57,23 @@ class dataModel extends Model {
 			'visitor_type'
 		];
 
+		$data["id"] = $_SESSION['formdata']["timestamp"];
+
 		//push all common fileds to data array
 		foreach($commonFormFields as $formField){
 			if(isset($_SESSION['formdata'][$formField]))
-			array_push($data,$_SESSION['formdata'][$formField]);
+				$data[$formField] = $_SESSION['formdata'][$formField];
 		}
 
-		$visitoryType = $commonFormFields['visitor_type'];
-		foreach($visitorTypeFields[$visitoryType] as $field){
-			if(isset($_SESSION['formdata'][$field]))
-				array_push($data,$_SESSION['formdata'][$field]);			
+		$visitoryType = $_SESSION['formdata']['visitor_type'];
+		if(in_array($visitoryType,$visitorTypeFields)){
+			foreach($visitorTypeFields[$visitoryType] as $field){
+				if(isset($_SESSION['formdata'][$field]))
+					$data[$field] = $_SESSION['formdata'][$field];			
+			}
 		}
+
+		return (($data)? $data : '');
 
 	}
 

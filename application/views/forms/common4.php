@@ -21,6 +21,7 @@
                 <p class="form-text">Click submit when you are ready to explore.<br />Don't forget to sign out when you leave.</p>
                 <div class="form-group my-5">
                     <input type="hidden" id="view_type" name="view_type" value="8">
+                    <input type="hidden" id="timestamp" name="timestamp" value="">
                     <button type="submit" class="btn my-nxt-button">Next</button>
                 </div>        
             </form>
@@ -32,6 +33,7 @@
   window.onload = function() {
     const dateField = document.getElementById('sign_in_date');
     const timeField = document.getElementById('sign_in_time');
+    const timestamp = document.getElementById('timestamp');
 
     const now = new Date();
 
@@ -44,5 +46,6 @@
 
     dateField.value = formattedDate;
     timeField.value = formattedTime;
+    timestamp.value = Date.now();
   };
 </script>

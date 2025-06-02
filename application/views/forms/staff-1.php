@@ -9,7 +9,7 @@
             <form action="<?=BASE_URL?>data/test/6" method="POST">
                 <label for="designation" class="form-label label-text-info mb-4">Enter your <span class="coloured">Designation</span></label>
                 <div class="form-group d-flex justify-content-center align-items-center mb-5">
-                    <input type="text" class="form-control textbox-bg w-50 mx-2" id="designation" name="designation" placeholder="Type your Designation">
+                    <input type="text" class="form-control textbox-bg w-50 mx-2" id="designation" name="designation" value="<?= (isset($_SESSION["formdata"]["designation"]))? $_SESSION["formdata"]["designation"] : '';  ?>" placeholder="Type your Designation">
                     <i class="bi bi-pencil"></i>                    
                 </div>    
                 <div class="form-group my-5">

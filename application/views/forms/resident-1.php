@@ -11,9 +11,9 @@
                 <div class="form-group d-flex justify-content-center align-items-center mb-5 custom-select">
                     <select class="form-select form-select-lg mb-3 w-75 select-branch-box-bg" id="relationship" name="relationship" aria-label="Select Relationship">
                       <option class="emptyselect fst-italic" selected disabled hidden>Select Relationship</option>
-                      <option value="">Parent</option>
-                      <option value="">Spouse</option>
-                      <option value="">Child</option>
+                      <option value="Parent" <?= (isset($_SESSION['formdata']['relationship']) && $_SESSION['formdata']['relationship'] == 'Parent') ? 'selected' : '' ?>>Parent</option>
+                      <option value="Spouse" <?= (isset($_SESSION['formdata']['relationship']) && $_SESSION['formdata']['relationship'] == 'Spouse') ? 'selected' : '' ?>>Spouse</option>
+                      <option value="Child" <?= (isset($_SESSION['formdata']['relationship']) && $_SESSION['formdata']['relationship'] == 'Child') ? 'selected' : '' ?>>Child</option>
                     </select>
                 </div>    
                 <div class="form-group my-5">
