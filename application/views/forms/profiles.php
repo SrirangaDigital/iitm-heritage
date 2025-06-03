@@ -5,7 +5,7 @@
             <span><i class="bi bi-arrow-left-circle h3"></i></span>
         </div>    
         <div class="col-md-6 text-center">
-            <p class="text-end my-5"><a href="<?=BASE_URL?>data/test/99"><i class="bi bi-x h2"></i></a></p>
+            <p class="text-end my-5"><a href="<?=BASE_URL?>data/sign_in/99"><i class="bi bi-x h2"></i></a></p>
             <label for="visitor-name" class="form-label label-text-info mb-4"><span class="coloured">Select</span> Profile</label>
             
             <div class="d-flex flex-wrap gap-3 justify-content-start">

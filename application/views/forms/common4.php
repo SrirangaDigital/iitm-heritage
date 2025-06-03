@@ -2,11 +2,11 @@
 <div class="container h-100">
     <div class="row  h-100 justify-content-center align-items-center">
         <div class="col-md-1 text-center">
-            <span><a href="<?=BASE_URL?>data/test/6"><i class="bi bi-arrow-left-circle h3"></i></span></a>
+            <span><a href="<?=BASE_URL?>data/sign_in/6"><i class="bi bi-arrow-left-circle h3"></i></span></a>
         </div>    
         <div class="col-md-6 text-center">
-            <p class="text-end my-5"><a href="<?=BASE_URL?>data/test/99"><i class="bi bi-x h2"></i></a></p>
-            <form action="<?=BASE_URL?>data/test/8" method="POST">
+            <p class="text-end my-5"><a href="<?=BASE_URL?>data/sign_in/99"><i class="bi bi-x h2"></i></a></p>
+            <form action="<?=BASE_URL?>data/sign_in/8" method="POST">
                 <label for="sign_in_date" class="form-label label-text-info mb-4">You are <span class="coloured">Done!</span></label>
                 <div class="form-group d-flex justify-content-center align-items-center mb-4">
                     <span class="mx-4 fw-bold">Date</span>

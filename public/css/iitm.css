@@ -238,7 +238,7 @@ span.big-icon i{
 	min-height: 140px;
 }
 
-a.card-select-link{
+a.card-select-link, a.card-select-link:hover, a.card-select-link:active{
 	display: inline-flex;
 	justify-content: center;
 	align-items: center;

@@ -7,7 +7,7 @@ class data extends Controller {
 		parent::__construct();
 	}
 
-	public function test($query=[],$view_type = DEFAULT_TYPE){
+	public function sign_in($query=[],$view_type = DEFAULT_TYPE){
 
 		$formData = $this->model->getPostData();
 

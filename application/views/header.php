@@ -65,7 +65,7 @@
     <link rel="stylesheet" href="<?=PUBLIC_URL?>css/aux.css">
     <link rel="stylesheet" href="<?=PUBLIC_URL?>css/social.css">
     <link rel="stylesheet" href="<?=PUBLIC_URL?>css/viewer.css">
-    <link rel="stylesheet" href="<?=PUBLIC_URL?>css/iitm.css">
+    <link rel="stylesheet" href="<?=PUBLIC_URL?>css/iitm.css?v=1.1">
     <script type="text/javascript">var base_url = "<?= BASE_URL?>";</script>
 
 

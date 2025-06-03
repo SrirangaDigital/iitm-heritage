@@ -5,8 +5,8 @@
             <span><a href="<?=BASE_URL?>"><i class="bi bi-arrow-left-circle h3"></i></span></a>
         </div>    
         <div class="col-md-6 text-center">
-            <p class="text-end my-5"><a href="<?=BASE_URL?>data/test/99"><i class="bi bi-x h2"></i></a></p>
-            <form action="<?=BASE_URL?>data/test/2" method="POST">
+            <p class="text-end my-5"><a href="<?=BASE_URL?>data/sign_in/99"><i class="bi bi-x h2"></i></a></p>
+            <form action="<?=BASE_URL?>data/sign_in/2" method="POST">
                 <div class="input-group d-flex justify-content-center align-items-center mb-5">
                     <label for="visitor-name" class="form-label label-text-info mb-4">Please Enter your <span class="coloured">name</span></label>
                     <input type="text" class="form-control textbox-bg w-50 mx-2" id="visitor_name" name="visitor_name" value="<?= (isset($_SESSION["formdata"]["visitor_name"]))? $_SESSION["formdata"]["visitor_name"] : "";  ?>" placeholder="Type your name" required>
