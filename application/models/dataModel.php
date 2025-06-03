@@ -65,15 +65,16 @@ class dataModel extends Model {
 				$data[$formField] = $_SESSION['formdata'][$formField];
 		}
 
-		$visitoryType = $_SESSION['formdata']['visitor_type'];
-		if(in_array($visitoryType,$visitorTypeFields)){
-			foreach($visitorTypeFields[$visitoryType] as $field){
+		$visitorType = $_SESSION['formdata']['visitor_type'];
+		
+		if(array_key_exists($visitorType, $visitorTypeFields)){
+			foreach($visitorTypeFields[$visitorType] as $field){
 				if(isset($_SESSION['formdata'][$field]))
 					$data[$field] = $_SESSION['formdata'][$field];			
 			}
 		}
 
-		return (($data)? $data : '');
+		return $data;
 
 	}
 
