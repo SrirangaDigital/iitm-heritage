@@ -20,43 +20,36 @@ class data extends Controller {
 			$_SESSION['formdata']['visitor_type'] = $formData['other_category']; 
 		}
 		
+		//$this->dumpData();		
 
 		$data = [];
 		if($view_type == 1){
-			$this->dumpData();
 			$this->view('forms/common1', $data);
 		}
 		elseif($view_type == 2){
-			$this->dumpData();
 			$this->view('forms/common2', $data);		
 		}
 		elseif($view_type == 3){
 			$_SESSION['formdata']['visitor_type'] = 'alumnus';
-			$this->dumpData();
 			$this->view('forms/alumnus-1', $data);		
 		}
 		elseif($view_type == 4){
 			$_SESSION['formdata']['visitor_type'] = 'alumnus';			
-			$this->dumpData();
 			$this->view('forms/alumnus-2', $data);		
 		}
 		elseif($view_type == 5){
 			$_SESSION['formdata']['visitor_type'] = 'alumnus';			
-			$this->dumpData();
 			$this->view('forms/alumnus-3', $data);		
 		}
 		elseif($view_type == 6){
-			$this->dumpData();
 			$this->view('forms/common3', $data);
 		}
 		elseif($view_type == 7){
-			$this->dumpData();
 			$this->view('forms/common4', $data);
 		}
 		elseif($view_type == 8){
 			$data = $this->model->normalizeData();
-			//$jsonData = json_encode($data, JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT);
-			//$this->dumpData();
+	
 			$result = $this->insertDB($data);
 			if($result['result'])
 				$this->view('forms/common5', $result);
@@ -65,27 +58,22 @@ class data extends Controller {
 		}
 		elseif($view_type == 9){
 			$_SESSION['formdata']['visitor_type'] = 'faculty';
-			$this->dumpData();
 			$this->view('forms/faculty-1', $data);
 		}
 		elseif($view_type == 10){
 			$_SESSION['formdata']['visitor_type'] = 'resident';
-			$this->dumpData();
 			$this->view('forms/resident-1', $data);
 		}
 		elseif($view_type == 11){
 			$_SESSION['formdata']['visitor_type'] = 'staff';
-			$this->dumpData();
 			$this->view('forms/staff-1', $data);
 		}
 		elseif($view_type == 12){
 			$_SESSION['formdata']['visitor_type'] = 'student';
-			$this->dumpData();
 			$this->view('forms/student-1', $data);		
 		}
 		elseif($view_type == 13){
 			$_SESSION['formdata']['visitor_type'] = 'student';
-			$this->dumpData();
 			$this->view('forms/student-2', $data);
 		}
 		elseif($view_type == 14)
@@ -104,6 +92,44 @@ class data extends Controller {
 			
 			@header('Location: ' . BASE_URL );	
 		}
+	}
+
+	public function profiles(){
+
+		$db = $this->model->db->useDB();
+
+		$collection = $this->model->db->selectCollection($db, VISITOR_COLLECTION);
+		$success = false;
+		$results = [];
+
+		try {
+			$cursor = $collection->find([
+			    'sign_out_date' => ['$exists' => false],
+			    'sign_out_time' => ['$exists' => false],
+			]);
+
+
+			foreach ($cursor as $document) {
+			    $results[] = (array) $document;
+			}
+			
+			$success = true;
+
+		} catch (Exception $e) {
+    		$results["msg"] = $e->getMessage();
+			$success = false;
+		}
+		if(empty($results)){
+			$this->view('page/noprofiles', $results);
+		}
+		elseif($success){
+			$this->view('forms/profiles', $results);
+		} else{
+			$this->view('error/profiles', $results);			
+		}
+
+
+
 	}
 
 	public function dumpData(){
@@ -149,7 +175,7 @@ class data extends Controller {
 	}
 
 	public function pagetest(){
-		$this->view('error/dbsetup');
+		$this->view('forms/profiles');
 	}
 
 }
