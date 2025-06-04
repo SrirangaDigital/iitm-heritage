@@ -53,18 +53,18 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Custom styles for this template -->
     <link href="<?=PUBLIC_URL?>css/style.css?v=1.2" rel="stylesheet">
-    <link href="<?=PUBLIC_URL?>css/navbar.css" rel="stylesheet">
+    <!-- <link href="<?=PUBLIC_URL?>css/navbar.css" rel="stylesheet"> -->
     <!-- <link href="<?=PUBLIC_URL?>css/carousel.css?v=1.3" rel="stylesheet"> -->
 
     <!-- <link rel="stylesheet" href="<?=PUBLIC_URL?>css/navbar.css"> -->
-    <link rel="stylesheet" href="<?=PUBLIC_URL?>css/page.css?v=1.3">
-    <link rel="stylesheet" href="<?=PUBLIC_URL?>css/archive.css">
+    <!-- <link rel="stylesheet" href="<?=PUBLIC_URL?>css/page.css?v=1.3"> -->
+    <!-- <link rel="stylesheet" href="<?=PUBLIC_URL?>css/archive.css"> -->
     <link rel="stylesheet" href="<?=PUBLIC_URL?>css/general.css">
-    <link rel="stylesheet" href="<?=PUBLIC_URL?>css/flat.css">
-    <link rel="stylesheet" href="<?=PUBLIC_URL?>css/form.css">
-    <link rel="stylesheet" href="<?=PUBLIC_URL?>css/aux.css">
+    <!-- <link rel="stylesheet" href="<?=PUBLIC_URL?>css/flat.css"> -->
+    <!-- <link rel="stylesheet" href="<?=PUBLIC_URL?>css/form.css"> -->
+<!--     <link rel="stylesheet" href="<?=PUBLIC_URL?>css/aux.css">
     <link rel="stylesheet" href="<?=PUBLIC_URL?>css/social.css">
-    <link rel="stylesheet" href="<?=PUBLIC_URL?>css/viewer.css">
+    <link rel="stylesheet" href="<?=PUBLIC_URL?>css/viewer.css"> -->
     <link rel="stylesheet" href="<?=PUBLIC_URL?>css/iitm.css?v=1.1">
     <script type="text/javascript">var base_url = "<?= BASE_URL?>";</script>
 

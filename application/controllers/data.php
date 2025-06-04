@@ -110,7 +110,8 @@ class data extends Controller {
 
 
 			foreach ($cursor as $document) {
-			    $results[] = (array) $document;
+				if(isset($document->id))
+				    $results[] = (array) $document;
 			}
 			
 			$success = true;
@@ -119,6 +120,8 @@ class data extends Controller {
     		$results["msg"] = $e->getMessage();
 			$success = false;
 		}
+
+
 		if(empty($results)){
 			$this->view('page/noprofiles', $results);
 		}
