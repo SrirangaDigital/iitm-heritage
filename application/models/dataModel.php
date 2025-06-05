@@ -78,6 +78,27 @@ class dataModel extends Model {
 
 	}
 
+	public function normalizeSignOutData(){
+
+		$data = [];
+		$commonFormFields = [
+			'exhibits',
+			'otherexhibit',
+			'feedback',
+			'sign_out_date',
+			'sign_out_time'
+		];
+
+		//push all common fileds to data array
+		foreach($commonFormFields as $formField){
+			if(isset($_SESSION['formdata'][$formField]))
+				$data[$formField] = $_SESSION['formdata'][$formField];
+		}
+
+		return $data;
+
+	}
+
 	public function getIdFromPath($path){
 
 		$id = str_replace(PHY_METADATA_URL, '', $path);

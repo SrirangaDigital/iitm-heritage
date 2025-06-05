@@ -76,16 +76,6 @@ class data extends Controller {
 			$_SESSION['formdata']['visitor_type'] = 'student';
 			$this->view('forms/student-2', $data);
 		}
-		elseif($view_type == 14)
-			$this->view('forms/signout-1', $data);
-		elseif($view_type == 15)
-			$this->view('forms/signout-2', $data);
-		elseif($view_type == 16)
-			$this->view('forms/signout-3', $data);
-		elseif($view_type == 17)
-			$this->view('forms/signout-4', $data);
-		elseif($view_type == 18)
-			$this->view('forms/signout-5', $data);
 		elseif($view_type == 99){
 			if(isset($_SESSION['formdata']))
 				unset($_SESSION['formdata']);
@@ -177,8 +167,99 @@ class data extends Controller {
 
 	}
 
+
+	public function sign_out($query=[],$id,$view_type = DEFAULT_TYPE){
+		
+		$formData = $this->model->getPostData();
+
+		if(isset($formData) && isset($formData['view_type'])){
+			$this->model->processFormData($formData);
+			$view_type = $formData['view_type']; 
+		}		
+	
+		$dataFromDB = $this->getVisitorDetails($id);
+
+		if($view_type == 1){
+			$this->view('forms/signout-2', $dataFromDB);
+		}		
+		elseif($view_type == 2){
+			$this->view('forms/signout-3', $dataFromDB);
+		}		
+		elseif($view_type == 3){
+			$this->view('forms/signout-4', $dataFromDB);
+		}
+		elseif($view_type == 4){
+			$data = $this->model->normalizeSignOutData();
+			$status = $this->updateDB($data,$id);
+			if($status['result'])
+				$this->view('forms/signout-5');
+			else
+				$this->view('error/signout',$status);
+		}
+		elseif($view_type == 99){
+			if(isset($_SESSION['formdata']))
+				unset($_SESSION['formdata']);
+			
+			@header('Location: ' . BASE_URL );	
+		}
+	}
+
+
+	public function getVisitorDetails($id){
+
+		$db = $this->model->db->useDB();
+		$collection = $this->model->db->selectCollection($db, VISITOR_COLLECTION);
+		$results = [];
+
+		try {
+				$cursor = $collection->findOne([
+					'id' => $id,
+				    'sign_out_date' => ['$exists' => false],
+				    'sign_out_time' => ['$exists' => false],
+				]);
+
+				if(isset($cursor->id))
+				    $results[] = (array) $cursor;
+				
+				$success = true;
+
+			} catch (Exception $e) {
+    			$results["msg"] = $e->getMessage();
+				$success = false;
+			}
+
+
+		return $results;
+
+	}
+
+	public function updateDB($data,$id){
+
+		$db = $this->model->db->useDB();
+		$collection = $this->model->db->selectCollection($db, VISITOR_COLLECTION);
+		$status = [];
+
+		try {
+
+				$result = $collection->updateOne(
+				    ['id' => $id],        
+				    ['$set' => $data]     
+				);
+
+				$status['result'] = ($result->getModifiedCount())? true : false;			
+
+			} catch (Exception $e) {
+    			
+    			$status["msg"] = $e->getMessage();
+				$status['result'] = false;
+			}
+
+
+		return $status;
+	}
+
 	public function pagetest(){
-		$this->view('forms/profiles');
+		$this->view('error/dbsetup');
 	}
 
 }
