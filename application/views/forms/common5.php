@@ -12,7 +12,7 @@
 
 <script>
   // Works if JavaScript is enabled
-  //setTimeout(function() {
-  //  window.location.href = base_url;
-  //}, 5000);
+  setTimeout(function() {
+   window.location.href = base_url;
+  }, 2000);
 </script>
