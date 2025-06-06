@@ -1,5 +1,7 @@
+
 html, body {
-      height: 100%;
+	font-family: 'Inter',  sans-serif !important;
+  height: 100%;
  }
 
 .landing-page-heading{
@@ -7,6 +9,31 @@ html, body {
 	color: #000;
 }
 
+p{
+    font-size:15px;
+    padding-right: 5px;
+}
+
+footer {
+	padding-top: 50px;
+  position : absolute;
+	width: 100%;
+}
+
+a:link { 
+	text-decoration: none;
+}
+
+a {
+	-webkit-transition: 0.2s ease-in-out all;
+	-moz-transition: 0.2s ease-in-out all;
+	-o-transition: 0.2s ease-in-out all;
+	transition: 0.2s ease-in-out all;
+}
+
+a i.bi{
+	color: #949494;
+}
 
 /*** Buttons design ****/
 a.mybutton{
@@ -143,6 +170,8 @@ input::placeholder {
 
 input {
     font-style: normal; /* Ensures actual input text is not italic */
+		box-shadow: 0 0 0 30px #F3F3F3 inset !important;
+    -webkit-box-shadow: 0 0 0 30px #F3F3F3 inset !important;
   }
 
 input.textbox-bg, input.textbox-bg:focus{
