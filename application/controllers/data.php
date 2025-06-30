@@ -20,8 +20,6 @@ class data extends Controller {
 			$_SESSION['formdata']['visitor_type'] = $formData['other_category']; 
 		}
 		
-		//$this->dumpData();		
-
 		$data = [];
 		if($view_type == 1){
 			$this->view('forms/common1', $data);
@@ -169,14 +167,14 @@ class data extends Controller {
 
 
 	public function sign_out($query=[],$id,$view_type = DEFAULT_TYPE){
-		
+
 		$formData = $this->model->getPostData();
 
 		if(isset($formData) && isset($formData['view_type'])){
 			$this->model->processFormData($formData);
 			$view_type = $formData['view_type']; 
 		}		
-	
+
 		$dataFromDB = $this->getVisitorDetails($id);
 
 		if($view_type == 1){
@@ -215,7 +213,7 @@ class data extends Controller {
 				$cursor = $collection->findOne([
 					'id' => $id,
 				    'sign_out_date' => ['$exists' => false],
-				    'sign_out_time' => ['$exists' => false],
+				    'sign_out_time' => ['$exists' => false]
 				]);
 
 				if(isset($cursor->id))
@@ -227,7 +225,6 @@ class data extends Controller {
     			$results["msg"] = $e->getMessage();
 				$success = false;
 			}
-
 
 		return $results;
 
