@@ -64,16 +64,17 @@ a.mybutton-incr{
 	height: 44px;
 	font-size: 24px;
 	font-weight: bold;
-	background-color: #F3F3F3;
+	background-color: #FFF;
 	color: #888;
 	border-radius: 10px !important;
+	border: 1px solid #888;
 	text-decoration: none;
 }
 
-a.mybutton-incr:hover, a.mybutton-incr:active{
-	background-color: #000 !important;
-	color: #FFF;
+a.mybutton-incr:hover, a.mybutton-incr:focus, a.mybutton-incr:active{
+	background-color: #FFF !important;
 	text-decoration: none;
+	border: none !important;
 }
 
 a.bt-type{
@@ -83,15 +84,16 @@ a.bt-type{
 	vertical-align: middle !middle;
 	font-weight: bold;
 	font-size: 17px;
-	background-color: #000;
-	color: #FFF;
+	background-color: #FFF;
+	color: #666;
 	border-radius: 10px !important;
+	border: 1px solid #666;
 	margin: 10px 10px 10px 10px;
 
 }
 
-a.bt-type:hover, a.bt-type:active{
-	background-color: #000 !important;
+a.bt-type:hover, a.bt-type:focus, a.bt-type:active{
+	background-color: #666 !important;
 	color: #FFF;
 }
 
@@ -160,7 +162,7 @@ img.h-image{
 
 span.coloured{
 	font-weight: bold;
-	color: #F7B722;
+	color: #000;
 }
 
 input::placeholder {
@@ -181,6 +183,11 @@ input.textbox-bg, input.textbox-bg:focus{
 	border-radius: 10px !important;
 	color: #000 !important;
 }
+
+.bg-label{
+	background-color: #F3F3F3 !important;
+}
+
 
   input:valid,
   input:-webkit-autofill,
@@ -215,7 +222,11 @@ input.textbox-outline, input.textbox-outline:focus{
 }
 
 .input-group>input.txtbox-small {
+	width: 49px;
+	height: 44px;
 	flex: 0 1 70px;
+	border-radius: 10px !important;
+	border: none !important;
 }
 
 .input-group>input.txtbox-small::placeholder {
@@ -267,7 +278,7 @@ span.big-icon i{
 	min-height: 140px;
 }
 
-a.card-select-link, a.card-select-link:hover, a.card-select-link:active{
+a.card-select-link{
 	display: inline-flex;
 	justify-content: center;
 	align-items: center;
@@ -275,22 +286,36 @@ a.card-select-link, a.card-select-link:hover, a.card-select-link:active{
 	width: 125px;
 	height: 40px;
 	margin: 18px auto;
-	background-color: #000;
-	color: #F7B722;
+	background-color: red;
+	color: #FFF;
 	border-radius: 20px;
 }
+
+a.card-select-link:hover, a.card-select-link:focus, a.card-select-link:active{
+	background-color: #FFF;
+	color: red;
+	border: 1px solid red;
+
+}
+
 
 .input-group .bi-pencil {
   font-size: 1.2rem; /* Adjust icon size */
   line-height: 1; /* Ensure icon stays aligned */
 }
 
+.exhibits-list{
+	padding: 20px 0px 20px 0;
+	background-color: #EEE !important;
+	border-radius: 15px;
+	margin-bottom: 20px;
+}
 
  
 .checkbox-wrapper {
 			font-family: 'Inter';
-      width: 100%;
-      margin-bottom: 0.5rem;
+      width: 90%;
+      margin: 0 auto 0.5rem auto;
     }
 
     .checkbox-input {
@@ -301,8 +326,8 @@ a.card-select-link, a.card-select-link:hover, a.card-select-link:active{
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background-color: black;
-      color: white;
+      background-color: #EEE;
+      color: #000;
       padding: 0.75rem 1rem;
       border-radius: 8px;
       cursor: pointer;
@@ -331,7 +356,8 @@ a.card-select-link, a.card-select-link:hover, a.card-select-link:active{
     }
 
     .checkbox-input:checked + .checkbox-label {
-      background-color: white;
+      background-color: #888;
+      border-radius: 30px !important;
       color: black;
     }
 
@@ -344,3 +370,104 @@ a.card-select-link, a.card-select-link:hover, a.card-select-link:active{
       content: "✔";
       color: black;
     }
+
+
+    /**** New buttons ***/
+
+a.bluebutton{
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	vertical-align: middle !middle;
+	width: 223px;
+	height: 103px;
+	font-size: 24px;
+	font-weight: bold;
+	background-color: #FFF;
+	color: #2196F3;
+	border: 4px solid #2196F3;
+	border-radius: 20px;
+}
+
+a.bluebutton:hover, a.bluebutton:active{
+	background-color: #2196F3;
+	color: #FFF;
+}
+
+a.redbutton{
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	vertical-align: middle !middle;
+	width: 223px;
+	height: 103px;
+	font-size: 24px;
+	font-weight: bold;
+	background-color: #FFF;
+	color: red;
+	border: 4px solid red;
+	border-radius: 20px;
+}
+
+a.redbutton:hover, a.redbutton:active{
+	background-color: red;
+	color: #FFF;
+}
+
+
+a.my-nxt-blue-button, a.my-nxt-red-button{
+	margin-right: 20px !important;
+}
+
+button.my-nxt-blue-button, a.my-nxt-blue-button{
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	vertical-align: middle !middle;
+	width: 177px;
+	height: 51px;
+	font-size: 20px;
+	font-weight: bold;
+	background-color: #FFF !important;
+	color: #2196F3 !important;
+	border-radius: 10px;	
+	border: 1px solid #2196F3 !important;
+}
+
+button.my-nxt-blue-button:focus, button.my-nxt-blue-button:hover,  button.my-nxt-blue-button:active{
+	background-color: #2196F3 !important;
+	color: #FFF !important;
+}
+
+a.my-nxt-blue-button:focus, a.my-nxt-blue-button:hover,  a.my-nxt-blue-button:active{
+	background-color: #2196F3 !important;
+	color: #FFF !important;
+}
+
+button.my-nxt-red-button, a.my-nxt-red-button{
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	vertical-align: middle !middle;
+	width: 177px;
+	height: 51px;
+	font-size: 20px;
+	font-weight: bold;
+	background-color: #FFF !important;
+	color: red !important;
+	border-radius: 10px;	
+	border: 1px solid red !important;
+}
+
+button.my-nxt-red-button:focus, button.my-nxt-red-button:hover,  button.my-nxt-red-button:active{
+	background-color: red !important;
+	color: #FFF !important;
+}
+
+a.my-nxt-red-button:focus, a.my-nxt-red-button:hover,  a.my-nxt-red-button:active{
+	background-color: red !important;
+	color: #FFF !important;
+}
+
+
+

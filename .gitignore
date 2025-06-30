@@ -5,3 +5,4 @@ public/pdf
 vendor/
 *.txt
 .DS*
+from_client/*
