@@ -72,12 +72,12 @@ a.mybutton-incr{
 }
 
 a.mybutton-incr:hover, a.mybutton-incr:focus, a.mybutton-incr:active{
-	background-color: #FFF !important;
+	background-color: #888 !important;
+	color: #FFF;
 	text-decoration: none;
-	border: none !important;
 }
 
-a.bt-type{
+a.bt-type, a.bt-type-selected{
 	display: inline-flex;
 	justify-content: center;
 	align-items: center;
@@ -89,10 +89,15 @@ a.bt-type{
 	border-radius: 10px !important;
 	border: 1px solid #666;
 	margin: 10px 10px 10px 10px;
-
+	text-decoration: none;
 }
 
-a.bt-type:hover, a.bt-type:focus, a.bt-type:active{
+/*a.bt-type:hover, a.bt-type:focus, a.bt-type:active{
+	background-color: #666 !important;
+	color: #FFF;
+}*/
+
+a.bt-type-selected{
 	background-color: #666 !important;
 	color: #FFF;
 }
@@ -250,9 +255,13 @@ span.big-icon i{
 	font-size: 105px;
 }
 
+option:disabled {
+    font-style: italic !important;
+  }
+
 .emptyselect{
-	color: #666 !important;
-	font-style: italic;
+	color: #CCC !important;
+	font-style: italic !important;
 }
 
 .card{
