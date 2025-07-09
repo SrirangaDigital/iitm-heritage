@@ -10,7 +10,7 @@
                 <label for="branch" class="form-label label-text-info mb-4">Select your <span class="coloured">Branch</span></label>
                 <div class="form-group d-flex justify-content-center align-items-center mb-5 custom-select">
                     <select class="form-select form-select-lg mb-3 w-75 select-branch-box-bg" aria-label="Select Branch" id="branch" name="branch">
-                      <option class="emptyselect fst-italic" selected disabled hidden>Select Branch</option>
+                      <option class="emptyselect" selected disabled hidden>𝑠𝑒𝑙𝑒𝑐𝑡 𝑏𝑟𝑎𝑛𝑐ℎ</option>
                       <option value="Aerospace Engineering" <?= (isset($_SESSION['formdata']['branch']) && $_SESSION['formdata']['branch'] == 'Aerospace Engineering') ? 'selected' : '' ?>>Aerospace Engineering</option>
                       <option value="Applied Mechanics" <?= (isset($_SESSION['formdata']['branch']) && $_SESSION['formdata']['branch'] == 'Applied Mechanics') ? 'selected' : '' ?>>Applied Mechanics</option>
                       <option value="Bio Technology" <?= (isset($_SESSION['formdata']['branch']) && $_SESSION['formdata']['branch'] == 'Bio Technology') ? 'selected' : '' ?>>Bio Technology</option>

@@ -10,7 +10,7 @@
                 <label for="hostel" class="form-label label-text-info mb-4">Select your <span class="coloured">Hostel</span></label>
                 <div class="form-group d-flex justify-content-center align-items-center mb-5 custom-select">
                     <select class="form-select form-select-lg mb-3 w-75 select-branch-box-bg" id="hostel" name="hostel" aria-label="Select Hostel">
-                      <option class="emptyselect fst-italic" selected disabled hidden>Select Hostel</option>
+                      <option class="emptyselect fst-italic" selected disabled hidden>𝑠𝑒𝑙𝑒𝑐𝑡 𝘩𝑜𝑠𝑡𝑒𝑙</option>
                       <option value="Alakananda" <?= (isset($_SESSION['formdata']['hostel']) && $_SESSION['formdata']['hostel'] == 'Alakananda') ? 'selected' : '' ?>>Alakananda</option>
                       <option value="Bhadra" <?= (isset($_SESSION['formdata']['hostel']) && $_SESSION['formdata']['hostel'] == 'Bhadra') ? 'selected' : '' ?>>Bhadra</option>
                       <option value="Brahmaputra" <?= (isset($_SESSION['formdata']['hostel']) && $_SESSION['formdata']['hostel'] == 'Brahmaputra') ? 'selected' : '' ?>>Brahmaputra</option>
