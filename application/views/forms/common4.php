@@ -1,30 +1,35 @@
 <!-- Flow :  7 -->
 <div class="container h-100">
-    <div class="row  h-100 justify-content-center align-items-center">
-<!--         <div class="col-md-1 text-center">
-            <span><a href="<?=BASE_URL?>data/sign_in/6"><i class="bi bi-arrow-left-circle h3"></i></a></span>
-        </div>     -->
-        <div class="col-md-6 text-center">
-            <p class="text-end my-5"><a href="<?=BASE_URL?>data/sign_in/99"><i class="bi bi-x h2"></i></a></p>
+    <div class="row mt-5 text-end">
+        <div class="offset-md-2 col-md-8">
+            <p class="text-end"><a href="<?=BASE_URL?>data/sign_in/99"><img src="<?=PUBLIC_URL?>images/vector-2.svg" alt="icon" width="31" height="31" /></a></p>
+        </div>
+    </div>
+    <div class="row justify-content-center align-items-center">
+        <div class="col-md-7 text-center">
             <form action="<?=BASE_URL?>data/sign_in/8" method="POST">
-                <label for="sign_in_date" class="form-label label-text-info mb-4">You are <span class="coloured">Done!</span></label>
-                <div class="form-group d-flex justify-content-center align-items-center mb-4">
-                    <span class="mx-4 fw-bold">Date</span>
-                    <input type="text" class="form-control text-center textbox-bg w-50 mx-2" id="sign_in_date" name="sign_in_date" placeholder="22 October 2024">
-                    <i class="bi bi-pencil"></i>
+                <div class="firsthalf">
+                    <label for="sign_in_date" class="form-label label-text-info mb-4 mt-5">You are <span class="coloured">Done!</span></label>
+                    <div class="form-group d-flex justify-content-center align-items-center mb-4">
+                        <span class="datetimelabel">Date</span>
+                        <input type="text" class="form-control text-center textbox-bg w-50 mx-3" id="sign_in_date" name="sign_in_date" placeholder="22 October 2024">
+                        <img src="<?=PUBLIC_URL?>images/vector-7.svg" class="ms-1" alt="icon" width="40" height="40" />                    
+                    </div>
+                    <div class="form-group d-flex justify-content-center align-items-center mb-5">
+                        <span class="datetimelabel">Time</span>
+                        <input type="text" class="form-control text-center textbox-bg w-50 mx-3" id="sign_in_time" name="sign_in_time" placeholder="18:23">
+                        <img src="<?=PUBLIC_URL?>images/vector-7.svg" class="ms-1" alt="icon" width="40" height="40" />                    
+                    </div>    
+                    <p class="form-text">Click submit when you are ready to explore.<br />Don't forget to sign out when you leave.</p>
                 </div>
-                <div class="form-group d-flex justify-content-center align-items-center mb-5">
-                    <span class="mx-4 fw-bold">Time</span>
-                    <input type="text" class="form-control text-center textbox-bg w-50 mx-2" id="sign_in_time" name="sign_in_time" placeholder="18:23">
-                    <i class="bi bi-pencil"></i>
+                <div class="secondhalf">
+                    <div class="form-group my-5">
+                        <input type="hidden" id="view_type" name="view_type" value="8">
+                        <input type="hidden" id="timestamp" name="timestamp" value="">
+                        <a href="<?=BASE_URL?>data/sign_in/6" class="btn my-nxt-blue-button">Previous</a>
+                        <button type="submit" class="btn my-nxt-blue-button">Next</button>
+                    </div>
                 </div>    
-                <p class="form-text">Click submit when you are ready to explore.<br />Don't forget to sign out when you leave.</p>
-                <div class="form-group my-5">
-                    <input type="hidden" id="view_type" name="view_type" value="8">
-                    <input type="hidden" id="timestamp" name="timestamp" value="">
-                    <a href="<?=BASE_URL?>data/sign_in/6" class="btn my-nxt-blue-button">Previous</a>
-                    <button type="submit" class="btn my-nxt-blue-button">Next</button>
-                </div>        
             </form>
         </div>
     </div>    
