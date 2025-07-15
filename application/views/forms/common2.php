@@ -9,7 +9,7 @@
         <div class="col-md-7 text-center">
             <form id="myForm" action="<?=BASE_URL?>data/sign_in/6" method="POST">
                 <div class="firsthalf">
-                    <label for="visitor-category" class="form-label label-text-info mb-4"><?= (isset($_SESSION['visitor_name']))? $_SESSION['visitor_name'] : 'Vedha' ?>, we would like to know<br /><span class="coloured">you</span> better<br />which one describes you best?</label><br />
+                    <label for="visitor-category" class="form-label label-text-info mb-4"><?= (isset($_SESSION['formdata']['visitor_name']))? $_SESSION['formdata']['visitor_name'] : 'Vedha' ?>, we would like to know<br /><span class="coloured">you</span> better<br />which one describes you best?</label><br />
                     <div class="input-group d-flex justify-content-around align-items-center mb-5">
                         <a class="button bt-type bt-alumnus" data-url="<?=BASE_URL?>data/sign_in/3">Alumnus</a>
                         <a class="button bt-type bt-student" data-url="<?=BASE_URL?>data/sign_in/12">Student</a>

@@ -81,8 +81,18 @@ a.mybutton-incr{
 	padding-bottom: 8px;
 }
 
-input#visitor_name::placeholder, input#batch::placeholder, input#email::placeholder, input#phonenumber::placeholder, input#rollnumber::placeholder, input#designation::placeholder {
-		padding-left: 20px;
+input#batch, input#phonenumber, input#email, input#visitor_name, input#rollnumber, input#designation{
+	padding-left: 30px;
+}
+
+
+input#batch::placeholder, 
+input#phonenumber::placeholder, 
+input#email::placeholder, 
+input#visitor_name::placeholder, 
+input#rollnumber::placeholder, 
+input#designation::placeholder,
+input#designation::placeholder {
     font-style: italic;
 		color: #514F4A !important;
   }
@@ -117,6 +127,9 @@ a.bt-type, a.bt-type-selected{
 a.bt-type-selected{
 	background-color: #666 !important;
 	color: #FFF;
+	-webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
 }
 
 a.bt-alumnus{

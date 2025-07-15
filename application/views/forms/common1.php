@@ -10,7 +10,7 @@
             <form action="<?=BASE_URL?>data/sign_in/2" method="POST">
                 <div class="firsthalf">
                     <div class="input-group d-flex justify-content-center align-items-center mb-5">
-                        <label for="visitor-name" class="form-label label-text-info mb-4">Please Enter your <span class="coloured">name</span></label>
+                        <label for="visitor-name" class="form-label label-text-info mb-4">Please enter your <span class="coloured">name</span></label>
                         <input type="text" class="form-control textbox-bg w-75 mx-2" id="visitor_name" name="visitor_name" value="<?= (isset($_SESSION["formdata"]["visitor_name"]))? $_SESSION["formdata"]["visitor_name"] : "";  ?>" placeholder="Type your name" required>
                         <img src="<?=PUBLIC_URL?>images/vector-7.svg" class="ms-1" alt="icon" width="40" height="40" />
                     </div>    
