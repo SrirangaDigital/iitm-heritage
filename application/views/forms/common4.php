@@ -44,7 +44,7 @@
     const now = new Date();
 
     // Format: 23 May 2025
-    const options = { day: '2-digit', month: 'short', year: 'numeric' };
+    const options = { day: '2-digit', month: 'long', year: 'numeric' };
     const formattedDate = now.toLocaleDateString('en-GB', options).replace(',', '');
 
     // Format: 24-hour time like 14:30
