@@ -39,6 +39,12 @@ a i.bi{
 	height: 400px;
 }
 
+.firsthalfpr{
+	height: 750px;
+	overflow-y: auto;        /* vertical scrollbar only if needed */
+  overflow-x: hidden;      /* prevents horizontal scroll */
+}
+
 .secondhalf{
 	height: 120px;
 }
@@ -81,7 +87,7 @@ a.mybutton-incr{
 	padding-bottom: 8px;
 }
 
-input#batch, input#phonenumber, input#email, input#visitor_name, input#rollnumber, input#designation{
+input#batch, input#phonenumber, input#email, input#visitor_name, input#rollnumber, input#designation, input#feedback{
 	padding-left: 30px;
 }
 
@@ -92,7 +98,9 @@ input#email::placeholder,
 input#visitor_name::placeholder, 
 input#rollnumber::placeholder, 
 input#designation::placeholder,
-input#designation::placeholder {
+input#designation::placeholder,
+input#feedback::placeholder
+ {
     font-style: italic;
 		color: #514F4A !important;
   }
@@ -179,11 +187,11 @@ a.bt-other{
 	border-radius: 20px;
 }
 
-#branch, #hostel, #email, #phonenumber, #rollnumber, #relationship, #department{
+#branch, #hostel, #email, #phonenumber, #rollnumber, #relationship, #department, #feedback{
 	height: 77px;	
 }
 
-#sign_in_date, #sign_in_time{
+#sign_in_date, #sign_in_time, #sign_out_date, #sign_out_time{
 	height: 74px;	
 }
 
@@ -329,21 +337,23 @@ option:disabled {
 }
 
 .card{
-	width: 12rem !important;
+	height: 370px;
+	width: 302px !important;
 	font-family: 'Inter';
 	background-color: #F3F3F3;
 	border: none;
-	border-radius: 15px;
+	border-radius: 50px;
 	padding: 20px;
 }
 
 .card-title{
 	font-weight: bold;
 	font-size: 24px;
+	margin-top: 30px;
 }
 
 .card-subtitle{
-	margin-top: 16px;
+	margin-top: 60px;
 	color: #B4B3B3;
 }
 
@@ -351,24 +361,36 @@ option:disabled {
 	min-height: 140px;
 }
 
-a.card-select-link{
+.card-footer{
+	background-color: transparent !important;
+	border: none;
+	margin-bottom: 30px;
+}
+
+a.card-select-link, a.card-select-link-selected{
 	display: inline-flex;
 	justify-content: center;
 	align-items: center;
 	vertical-align: middle !middle;
-	width: 125px;
-	height: 40px;
+	width: 180px;
+	height: 57px;
 	margin: 18px auto;
+	font-size: 20px;
 	background-color: red;
 	color: #FFF;
 	border-radius: 20px;
+}
+
+a.card-select-link-selected{
+	background-color: #FFF !important;
+	color: red !important;
+	border: 1px solid red !important;
 }
 
 a.card-select-link:hover, a.card-select-link:focus, a.card-select-link:active{
 	background-color: #FFF;
 	color: red;
 	border: 1px solid red;
-
 }
 
 
@@ -380,7 +402,7 @@ a.card-select-link:hover, a.card-select-link:focus, a.card-select-link:active{
 .exhibits-list{
 	padding: 20px 0px 20px 0;
 	background-color: #EEE !important;
-	border-radius: 15px;
+	border-radius: 20px;
 	margin-bottom: 20px;
 }
 
@@ -435,7 +457,7 @@ a.card-select-link:hover, a.card-select-link:focus, a.card-select-link:active{
     }
 
     .checkbox-input:checked + .checkbox-label .checkbox-tick {
-      background-color: white;
+      background-color: transparent;
 /*      border-color: black;*/
     }
 
@@ -522,9 +544,9 @@ button.my-nxt-red-button, a.my-nxt-red-button{
 	justify-content: center;
 	align-items: center;
 	vertical-align: middle !middle;
-	width: 177px;
-	height: 51px;
-	font-size: 20px;
+	width: 254px;
+	height: 74px;
+	font-size: 24px;
 	font-weight: bold;
 	background-color: #FFF !important;
 	color: red !important;
