@@ -22,7 +22,8 @@ class data extends Controller {
 		
 		$data = [];
 		if($view_type == 1){
-			$this->view('forms/common1', $data);
+			$visitor_count = $this->getVisitorCount();
+			$this->view('forms/common1', $visitor_count);
 		}
 		elseif($view_type == 2){
 			$this->view('forms/common2', $data);		
@@ -258,6 +259,32 @@ class data extends Controller {
 	public function pagetest(){
 		$this->view('error/dbsetup');
 	}
+
+
+	public function getVisitorCount(){
+
+		$db = $this->model->db->useDB();
+		$collection = $this->model->db->selectCollection($db, VISITOR_COLLECTION);
+		$results = [];
+
+		try {
+
+				$filter = [
+				    'sign_out_date' => ['$exists' => true, '$ne' => null, '$ne' => ''],
+				    'sign_out_time' => ['$exists' => true, '$ne' => null, '$ne' => '']
+				];
+
+				$count = $collection->countDocuments($filter);
+
+			} catch (Exception $e) {
+
+			  $count = 0;	
+			}
+
+		return $count;
+
+	}
+
 
 }
 

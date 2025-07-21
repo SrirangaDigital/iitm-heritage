@@ -406,6 +406,11 @@ a.card-select-link:hover, a.card-select-link:focus, a.card-select-link:active{
 	margin-bottom: 20px;
 }
 
+.visitor-count-info{
+	font-size: 28px;
+	color: #949494;
+	line-height: 1;
+}
  
 .checkbox-wrapper {
 			font-family: 'Inter';
