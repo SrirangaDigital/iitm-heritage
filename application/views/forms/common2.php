@@ -1,12 +1,12 @@
 <!-- Flow :  2 -->
 <div class="container h-100">
     <div class="row mt-5 text-end">
-        <div class="offset-md-2 col-md-8">
+        <div class="offset-md-2 col-md-9">
             <p class="text-end"><a href="<?=BASE_URL?>data/sign_in/99"><img src="<?=PUBLIC_URL?>images/vector-2.svg" alt="icon" width="31" height="31" /></a></p>
         </div>
     </div>
     <div class="row  justify-content-center align-items-center">
-        <div class="col-md-7 text-center">
+        <div class="col-md-8 text-center">
             <form id="myForm" action="<?=BASE_URL?>data/sign_in/6" method="POST">
                 <div class="firsthalf">
                     <label for="visitor-category" class="form-label label-text-info mb-4"><?= (isset($_SESSION['formdata']['visitor_name']))? $_SESSION['formdata']['visitor_name'] : 'Vedha' ?>, we would like to know<br /><span class="coloured">you</span> better<br />which one describes you best?</label><br />
@@ -19,7 +19,7 @@
                         <!-- <a class="button bt-type bt-other" href="<?=BASE_URL?>data/sign_in/6">Other</a>     -->
                         <div class="bg-label d-flex justify-content-center align-items-center py-1 px-4 rounded mx-1 mb-1">
                             <label for="other_category" class="me-2 mb-0">Other</label>
-                            <input type="text" id="other_category" name="other_category" class="form-control border-0 textbox-bg me-2" placeholder="Type your details..." data-url="<?=BASE_URL?>data/sign_in/6">
+                            <input type="text" id="other_category" name="other_category" class="form-control border-0 textbox-bg me-3" placeholder="Type your details..." data-url="<?=BASE_URL?>data/sign_in/6">
                         </div>
                         <img src="<?=PUBLIC_URL?>images/vector-7.svg" class="ms-1" alt="icon" width="40" height="40" />    
                     </div>
