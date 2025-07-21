@@ -12,12 +12,12 @@
                     <label for="sign_in_date" class="form-label label-text-info mb-4 mt-5">You are <span class="coloured">Done!</span></label>
                     <div class="form-group d-flex justify-content-center align-items-center mb-4">
                         <span class="datetimelabel">Date</span>
-                        <input type="text" class="form-control text-center textbox-bg w-50 mx-3" id="sign_in_date" name="sign_in_date" placeholder="22 October 2024">
+                        <input type="text" class="form-control text-center textbox-bg w-50 mx-3" id="sign_in_date" name="sign_in_date" placeholder="22 October 2024" required>
                         <img src="<?=PUBLIC_URL?>images/vector-7.svg" class="ms-1" alt="icon" width="40" height="40" />                    
                     </div>
                     <div class="form-group d-flex justify-content-center align-items-center mb-5">
                         <span class="datetimelabel">Time</span>
-                        <input type="text" class="form-control text-center textbox-bg w-50 mx-3" id="sign_in_time" name="sign_in_time" placeholder="18:23">
+                        <input type="text" class="form-control text-center textbox-bg w-50 mx-3" id="sign_in_time" name="sign_in_time" placeholder="18:23" required>
                         <img src="<?=PUBLIC_URL?>images/vector-7.svg" class="ms-1" alt="icon" width="40" height="40" />                    
                     </div>    
                     <p class="form-text">Click submit when you are ready to explore.<br />Don't forget to sign out when you leave.</p>
@@ -35,10 +35,23 @@
     </div>    
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
 <script>
+  flatpickr("#sign_in_date", {
+    dateFormat: "d F Y", // e.g., 21 July 2025
+  });
+
+  flatpickr("#sign_in_time", {
+    enableTime: true,
+    noCalendar: true,
+    dateFormat: "H:i", // e.g., 5:32 PM
+    time_24hr: false
+  });
+
   window.onload = function() {
-    const dateField = document.getElementById('sign_in_date');
-    const timeField = document.getElementById('sign_in_time');
+    // const dateField = document.getElementById('sign_in_date');
+    // const timeField = document.getElementById('sign_in_time');
     const timestamp = document.getElementById('timestamp');
 
     const now = new Date();
@@ -50,8 +63,8 @@
     // Format: 24-hour time like 14:30
     const formattedTime = now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', hour12: false });
 
-    dateField.value = formattedDate;
-    timeField.value = formattedTime;
+    // dateField.value = formattedDate;
+    // timeField.value = formattedTime;
     timestamp.value = Date.now();
   };
 </script>
