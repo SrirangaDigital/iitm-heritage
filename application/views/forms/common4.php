@@ -7,7 +7,7 @@
     </div>
     <div class="row justify-content-center align-items-center">
         <div class="col-md-7 text-center">
-            <form action="<?=BASE_URL?>data/sign_in/8" method="POST">
+            <form action="<?=BASE_URL?>data/sign_in/8" method="POST" id="myForm">
                 <div class="firsthalf">
                     <label for="sign_in_date" class="form-label label-text-info mb-4 mt-5">You are <span class="coloured">Done!</span></label>
                     <div class="form-group d-flex justify-content-center align-items-center mb-4">
@@ -67,4 +67,20 @@
     // timeField.value = formattedTime;
     timestamp.value = Date.now();
   };
+
+ document.getElementById("myForm").addEventListener("submit", function(e) {
+    const dateVal = document.getElementById("sign_in_date").value.trim();
+    const timeVal = document.getElementById("sign_in_time").value.trim();
+
+    if (!dateVal || !timeVal) {
+      e.preventDefault(); // stop form submit
+      alert("Please select both date and time.");
+      
+      // Optional: show red border
+      if (!dateVal) document.getElementById("sign_in_date").style.border = "2px solid #2196F3";
+      if (!timeVal) document.getElementById("sign_in_time").style.border = "2px solid #2196F3";
+    }
+  });
+
+
 </script>
