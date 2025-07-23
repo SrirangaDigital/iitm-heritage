@@ -6,6 +6,16 @@ class viewHelper extends View {
 
     }
 
+    public function checkValue($field, $value){
+
+        if(isset($_SESSION['formdata'][$field]) && htmlspecialchars_decode($_SESSION['formdata'][$field]) == htmlspecialchars_decode($value))
+            return 'selected'; 
+        else
+            return '';
+    }
+
+
+
     public function getHrefNumber($visitor_type) {
 
         if($visitor_type == 'alumnus')

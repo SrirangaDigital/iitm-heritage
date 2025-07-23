@@ -38,8 +38,9 @@ class data extends Controller {
 			$this->view('forms/alumnus-1', $data);		
 		}
 		elseif($view_type == 4){
+
 			$_SESSION['formdata']['visitor_type'] = 'alumnus';			
-			$this->view('forms/alumnus-2', $data);		
+			$this->view('forms/alumnus-2', $data);
 		}
 		elseif($view_type == 5){
 			$_SESSION['formdata']['visitor_type'] = 'alumnus';			
