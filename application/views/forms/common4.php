@@ -50,8 +50,8 @@
   });
 
   window.onload = function() {
-    // const dateField = document.getElementById('sign_in_date');
-    // const timeField = document.getElementById('sign_in_time');
+    const dateField = document.getElementById('sign_in_date');
+    const timeField = document.getElementById('sign_in_time');
     const timestamp = document.getElementById('timestamp');
 
     const now = new Date();
@@ -63,8 +63,8 @@
     // Format: 24-hour time like 14:30
     const formattedTime = now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', hour12: false });
 
-    // dateField.value = formattedDate;
-    // timeField.value = formattedTime;
+    dateField.value = formattedDate;
+    timeField.value = formattedTime;
     timestamp.value = Date.now();
   };
 

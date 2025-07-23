@@ -7,6 +7,11 @@ class data extends Controller {
 		parent::__construct();
 	}
 
+	public function testit($query=[]){
+		$data = [];
+		$this->view('forms/testit', $data);
+	}
+
 	public function sign_in($query=[],$view_type = DEFAULT_TYPE){
 
 		$formData = $this->model->getPostData();
@@ -269,12 +274,7 @@ class data extends Controller {
 
 		try {
 
-				$filter = [
-				    'sign_out_date' => ['$exists' => true, '$ne' => null, '$ne' => ''],
-				    'sign_out_time' => ['$exists' => true, '$ne' => null, '$ne' => '']
-				];
-
-				$count = $collection->countDocuments($filter);
+				$count = $collection->countDocuments();
 
 			} catch (Exception $e) {
 

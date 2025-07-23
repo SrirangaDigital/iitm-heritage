@@ -48,6 +48,24 @@
     time_24hr: false
   });
 
+window.onload = function() {
+    const dateField = document.getElementById('sign_out_date');
+    const timeField = document.getElementById('sign_out_time');
+
+    const now = new Date();
+
+    // Format: 23 May 2025
+    const options = { day: '2-digit', month: 'long', year: 'numeric' };
+    const formattedDate = now.toLocaleDateString('en-GB', options).replace(',', '');
+
+    // Format: 24-hour time like 14:30
+    const formattedTime = now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', hour12: false });
+
+    dateField.value = formattedDate;
+    timeField.value = formattedTime;
+  };
+
+
 document.getElementById("myForm").addEventListener("submit", function(e) {
     const dateVal = document.getElementById("sign_out_date").value.trim();
     const timeVal = document.getElementById("sign_out_time").value.trim();
