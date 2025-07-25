@@ -584,73 +584,180 @@ a.my-nxt-red-button:focus, a.my-nxt-red-button:hover,  a.my-nxt-red-button:activ
 
 /**** For testing *****/
 
- .dropdown{
-  background-color: #F3F3F3;
-        border-radius: 20px;
- }
+/* Custom CSS to override Bootstrap defaults and apply specific requirements */
 
-    .testit-wrapper {
-      width: 518px;
-    }
-
-    .testit-button {
-			background-color: #F3F3F3;
-			height: 77px;
-			width: 100%;
-			border-radius: 12px;
-			padding: 20px;
-			text-align: left;
-			color: #514F4A;
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-			border: none;
-			box-shadow: none;
-			font-family: 'Inter',  sans-serif !important;
-			font-weight: 300;
-			font-size: 20px;
-			font-style: italic;
-    }
-
-
-.testit-button:hover,
-.testit-button:focus,
-.testit-button:active,
-.testit-button.show {
-	background-color: #F3F3F3;
-  color: #000;
-  /*border-color: #ccc;*/
-  box-shadow: none;
+/* Overall Wrapper for Custom Select */
+.custom-select-wrapper {
+    width: 518px; /* Fixed width */
+    position: relative; /* Needed for dropdown positioning */
+    z-index: 1000; /* Ensure it stays above other content */
 }
 
-    .testit-button::after {
-      margin-left: 1rem;
-    }
+/* Custom Dropdown Toggle (The Button) */
+.custom-dropdown-toggle {
+    width: 518px; /* Fixed width - ENSURING THIS IS APPLIED */
+    height: 77px; /* Fixed height - ENSURING THIS IS APPLIED */
+    background-color: #F3F3F3; /* Custom background color */
+    color: #333; /* Default text color */
+    border: none !important; /* CRITICAL: Ensure no border, even Bootstrap's default, with !important */
+    outline: none !important; /* CRITICAL: Remove default focus outline, with !important */
+    box-shadow: none !important; /* CRITICAL: Remove Bootstrap's default button shadow, with !important */
+    padding: 0 20px; /* Use custom padding instead of Bootstrap's default */
+    box-sizing: border-box; /* Include padding in width/height */
+    cursor: pointer;
+    font-size: 18px; /* Default font size */
+    border-radius: 20px; /* All corners rounded when closed - ENSURING THIS IS APPLIED */
+    position: relative; /* Needed for z-index */
+    z-index: 2; /* Make button appear above dropdown when overlapping */
+    overflow: hidden; /* Important to hide content that might break border-radius */
 
-    .dropdown-menu {
-			background-color: #F3F3F3;	
-			width: 100%;
-			border-radius: 0 0 20px 20px;
-			/*border: 1px solid #ccc;*/
-			border: none;
-			padding: 0;
-			overflow: hidden;
-    }
+    /* Ensure consistent transition for border-radius properties */
+    transition: border-radius 0.3s ease, background-color 0.2s, color 0.2s;
+}
 
-    .dropdown-item {
-    	background-color: #F3F3F3;
-			padding: 14px 20px;
-			font-family: 'Inter',  sans-serif !important;
-    	font-weight: 400;
-    	font-style: normal;
-  		font-size: 20px;
-    }
+/* When the dropdown is open, adjust button's bottom radius for continuity */
+.custom-dropdown-toggle[aria-expanded="true"] {
+    border-bottom-left-radius: 0 !important; /* CRITICAL: Force sharp bottom corners when open */
+    border-bottom-right-radius: 0 !important; /* CRITICAL: Force sharp bottom corners when open */
+}
 
-    .dropdown-item.active,
-    .dropdown-item:hover {
-background-color: #949494;
-  color: #000;
-    border-radius: 50px;
-    }
+/* Specific focus state to prevent any remaining default blue outlines */
+.custom-dropdown-toggle:focus {
+    box-shadow: none !important;
+    outline: none !important;
+    border-color: transparent !important; /* Just in case */
+}
 
+
+/* Hide Bootstrap's default dropdown arrow */
+.custom-dropdown-toggle::after {
+    display: none;
+}
+
+/* Container for the SVG images */
+.dropdown-svg-icons {
+    width: 20px; /* Ensure enough space for the icon */
+    height: 20px; /* Ensure enough space for the icon */
+    flex-shrink: 0;
+    position: relative;
+}
+
+/* Styling for the SVG image elements */
+.dropdown-svg-icons img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: none; /* Hidden by default using display: none; */
+}
+
+/* Show only the active arrow */
+.dropdown-svg-icons img.active-arrow {
+    display: block; /* Show the active arrow using display: block; */
+}
+
+
+/* Placeholder Text Styling */
+.selected-display.placeholder-text {
+    font-style: italic;
+    color: #514F4A;
+    font-weight: 300; /* Default Inter weight for italic */
+}
+
+/* Default (selected option) Text Styling */
+.selected-display:not(.placeholder-text) {
+    font-style: normal;
+    color: #333;
+    font-weight: 700; /* Default Inter weight for normal text */
+}
+
+/* Custom Dropdown Menu (The UL) */
+.custom-dropdown-menu {
+    width: 518px; /* Match button width */
+    background-color: #F3F3F3; /* Custom background color */
+    border: none; /* No border for the dropdown */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth, overriding Bootstrap default */
+    margin-top: -7px; /* Adjusted: Sits slightly above the button, creating an overlap. */
+    position: absolute; /* Ensures it's positioned relative to the wrapper */
+    z-index: 1; /* Dropdown should be behind the overlapping part of the button */
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding: 0; /* Remove default padding from ul */
+    list-style: none; /* Remove default list bullets */
+    transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+    transform-origin: top;
+    opacity: 0;
+    transform: scaleY(0);
+    pointer-events: none;
+}
+
+/* When the dropdown is shown by Bootstrap */
+.custom-dropdown-menu.show {
+    opacity: 1;
+    transform: scaleY(1);
+    pointer-events: auto;
+}
+
+
+/* Individual Dropdown Items (The LIs) */
+.custom-dropdown-menu .dropdown-item {
+    padding: 10px 20px; /* Custom padding */
+    font-size: 20px; /* Custom font size */
+    color: #333; /* Default item text color */
+    background-color: transparent; /* Ensure transparent background for default */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.custom-dropdown-menu .dropdown-item:hover,
+.custom-dropdown-menu .dropdown-item:focus {
+     /* Slightly darker on hover/focus */
+	 /* background-color: #e0e0e0; */
+     /* Ensure text color remains consistent on hover */
+	 /* color: #333; */
+}
+
+/* Styling for Selected Dropdown Item */
+.custom-dropdown-menu .dropdown-item.selected {
+    background-color: #949494; /* Custom selected background color */
+    color: #333; /* Text color for selected item - now black */
+    border-radius: 50px; /* Apply 50px border-radius to the selected item */
+    margin: 5px; /* Add some margin to make the 50px border-radius visible */
+    width: calc(100% - 10px); /* Adjust width for the margin */
+    box-sizing: border-box; /* Ensure padding/margin are handled correctly */
+}
+
+/* Tick Mark Styling (now for an <img> tag) */
+.tick-mark {
+    /* Removed font-size as it's an image */
+    margin-left: 10px;
+    visibility: hidden; /* Hidden by default */
+    width: 20px; /* **Set width for your SVG image** */
+    height: 20px; /* **Set height for your SVG image** */
+    object-fit: contain; /* Ensure the SVG scales properly */
+    flex-shrink: 0;
+    /* color property doesn't directly apply to image SVG fill/stroke unless it's an inline SVG,
+       but vector-20.svg should ideally be designed with black/dark fill by default or handle currentColor */
+}
+
+/* Tick mark visibility when item is selected */
+.custom-dropdown-menu .dropdown-item.selected .tick-mark {
+    visibility: visible; /* Show only when selected */
+    /* If your SVG has fill="currentColor", its color will inherit from the .dropdown-item.selected's color,
+       which is #333 (black). If it doesn't, ensure vector-20.svg itself is black or you might need to
+       use SVG filters if you must change its color via CSS without direct fill control. */
+}
+
+/* Hide the placeholder option if it gets rendered in the custom dropdown */
+.custom-dropdown-menu .dropdown-item[data-value=""][data-disabled="true"] {
+    display: none;
+}
 

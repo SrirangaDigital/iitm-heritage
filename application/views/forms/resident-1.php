@@ -1,4 +1,12 @@
 <!-- Flow :  10 -->
+<?php
+
+$preselected_value = $_SESSION['formdata']['relationship'] ?? '';
+if(isset($_SESSION['formdata']['relationship']) && $_SESSION['formdata']['relationship'] != '')
+    $initial_display_text = $_SESSION['formdata']['relationship'];
+else
+    $initial_display_text = 'Select Relationship';
+?>
 <div class="container h-100">
     <div class="row mt-5 text-end">
         <div class="offset-md-2 col-md-8">
@@ -11,12 +19,26 @@
                 <div class="firsthalf">
                     <label for="relationship" class="form-label label-text-info mb-4">Select your <span class="coloured">Relationship to the<br />IITM Employee</span></label>
                     <div class="form-group d-flex justify-content-center align-items-center mb-5 custom-select">
-                        <select class="form-select form-select-lg mb-3 w-75 select-branch-box-bg" id="relationship" name="relationship" aria-label="Select Relationship">
-                          <option class="emptyselect fst-italic" selected disabled hidden>𝑠𝑒𝑙𝑒𝑐𝑡 𝑟𝑒𝑙𝑎𝑡𝑖𝑜𝑛𝑠ℎ𝑖𝑝</option>
-                          <option value="Parent" <?= (isset($_SESSION['formdata']['relationship']) && $_SESSION['formdata']['relationship'] == 'Parent') ? 'selected' : '' ?>>Parent</option>
-                          <option value="Spouse" <?= (isset($_SESSION['formdata']['relationship']) && $_SESSION['formdata']['relationship'] == 'Spouse') ? 'selected' : '' ?>>Spouse</option>
-                          <option value="Child" <?= (isset($_SESSION['formdata']['relationship']) && $_SESSION['formdata']['relationship'] == 'Child') ? 'selected' : '' ?>>Child</option>
-                        </select>
+                        <div class="custom-select-wrapper dropdown" data-target-select-id="relationship">
+                            <select class="d-none" id="relationship" name="relationship" aria-label="Select Relationship">
+                              <option value="" class="emptyselect" selected disabled>Select Relationship</option>
+                              <option value="Parent" <?= (isset($_SESSION['formdata']['relationship']) && $_SESSION['formdata']['relationship'] == 'Parent') ? 'selected' : '' ?>>Parent</option>
+                              <option value="Spouse" <?= (isset($_SESSION['formdata']['relationship']) && $_SESSION['formdata']['relationship'] == 'Spouse') ? 'selected' : '' ?>>Spouse</option>
+                              <option value="Child" <?= (isset($_SESSION['formdata']['relationship']) && $_SESSION['formdata']['relationship'] == 'Child') ? 'selected' : '' ?>>Child</option>
+                            </select>
+                            <button class="custom-dropdown-toggle dropdown-toggle d-flex justify-content-between align-items-center px-4" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="selected-display text-truncate
+                    <?= ($preselected_value === '') ? 'placeholder-text' : '' ?>"
+                    data-placeholder="Select Relationship"><?= $initial_display_text ?></span>
+                                <span class="dropdown-svg-icons ms-2">
+                                    <img src="<?=PUBLIC_URL?>images/vector-6.svg" alt="Down Arrow" class="dropdown-arrow-down active-arrow">
+                                    <img src="<?=PUBLIC_URL?>images/vector-5.svg" alt="Up Arrow" class="dropdown-arrow-up">
+                                </span>
+                            </button>
+
+                            <ul class="custom-dropdown-menu dropdown-menu">
+                            </ul>                            
+                        </div>
                     </div>
                 </div>
                 <div class="secondhalf">
@@ -30,3 +52,4 @@
         </div>
     </div>    
 </div>
+<script src="<?=PUBLIC_URL?>js/script.js"></script>
