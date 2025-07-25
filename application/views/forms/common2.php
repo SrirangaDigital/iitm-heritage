@@ -17,11 +17,11 @@
                         <a class="button bt-type bt-staff" data-url="<?=BASE_URL?>data/sign_in/11">Staff</a>        
                         <a class="button bt-type bt-resident mt-1" data-url="<?=BASE_URL?>data/sign_in/10">Resident</a>
                         <!-- <a class="button bt-type bt-other" href="<?=BASE_URL?>data/sign_in/6">Other</a>     -->
-                        <div class="bg-label d-flex justify-content-center align-items-center py-1 px-4 rounded mx-1 mb-1">
+                        <div class="bg-label d-flex justify-content-start align-items-center py-1 px-4 rounded">
                             <label for="other_category" class="me-2 mb-0">Other</label>
                             <input type="text" id="other_category" name="other_category" class="form-control border-0 textbox-bg me-3" placeholder="Type your details..." data-url="<?=BASE_URL?>data/sign_in/6">
                         </div>
-                        <img src="<?=PUBLIC_URL?>images/vector-7.svg" class="ms-1" alt="icon" width="40" height="40" />    
+                        <img src="<?=PUBLIC_URL?>images/vector-7.svg" style="position: absolute;top: 120px; right: -50px;" alt="icon" width="40" height="40" />    
                     </div>
                 </div>    
                 <div class="secondhalf my-5">    

@@ -26,7 +26,7 @@
                     <div class="form-group my-5">
                         <input type="hidden" id="view_type" name="view_type" value="4">
                         <a href="<?=BASE_URL?>data/sign_out/<?=$data[0]['id']?>/2" class="btn my-nxt-red-button">Previous</a>
-                        <button type="submit" class="btn my-nxt-red-button">Sign Out</button>
+                        <button type="submit" class="btn my-nxt-red-button my-nxt-red-button-selected">Sign Out</button>
                     </div>
                 </div>            
             </form>

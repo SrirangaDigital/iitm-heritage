@@ -27,7 +27,7 @@
                         <input type="hidden" id="view_type" name="view_type" value="8">
                         <input type="hidden" id="timestamp" name="timestamp" value="">
                         <a href="<?=BASE_URL?>data/sign_in/6" class="btn my-nxt-blue-button">Previous</a>
-                        <button type="submit" class="btn my-nxt-blue-button">Next</button>
+                        <button type="submit" class="btn my-nxt-blue-button my-nxt-blue-button-selected">Submit</button>
                     </div>
                 </div>    
             </form>

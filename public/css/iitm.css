@@ -172,7 +172,7 @@ a.bt-other{
 }
 
 #other_category{
-	width: 680px;
+	width: 730px;
 	height: 74px;
 }
 
@@ -543,7 +543,7 @@ button.my-nxt-blue-button, a.my-nxt-blue-button{
 	border: 1px solid #2196F3 !important;
 }
 
-button.my-nxt-blue-button:focus, button.my-nxt-blue-button:hover,  button.my-nxt-blue-button:active{
+button.my-nxt-blue-button:focus, button.my-nxt-blue-button:hover,  button.my-nxt-blue-button:active, button.my-nxt-blue-button-selected{
 	background-color: #2196F3 !important;
 	color: #FFF !important;
 }
@@ -568,10 +568,12 @@ button.my-nxt-red-button, a.my-nxt-red-button{
 	border: 1px solid red !important;
 }
 
-button.my-nxt-red-button:focus, button.my-nxt-red-button:hover,  button.my-nxt-red-button:active{
+button.my-nxt-red-button:focus, button.my-nxt-red-button:hover,  button.my-nxt-red-button:active, button.my-nxt-red-button-selected{
 	background-color: red !important;
 	color: #FFF !important;
 }
+
+
 
 a.my-nxt-red-button:focus, a.my-nxt-red-button:hover,  a.my-nxt-red-button:active{
 	background-color: red !important;
