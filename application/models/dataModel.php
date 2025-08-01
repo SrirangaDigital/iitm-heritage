@@ -7,20 +7,6 @@ class dataModel extends Model {
 		parent::__construct();
 	}
 
-	public function getFilesIteratively($dir, $pattern = '/*/'){
-
-		$files = [];
-	    $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator(rtrim($dir, "/")));
-		$regex = new RegexIterator($iterator, $pattern, RecursiveRegexIterator::GET_MATCH);
-
-	    foreach($regex as $file => $object) {
-	        
-			array_push($files, $file);
-	    }
-
-	    sort($files);
-	    return ($files);
-	}
 
 	public function processFormData($formData){
 		
@@ -99,129 +85,61 @@ class dataModel extends Model {
 
 	}
 
-	public function getIdFromPath($path){
 
-		$id = str_replace(PHY_METADATA_URL, '', $path);
-		$id = str_replace('/index.json', '', $id);
-		// $id = str_replace('/', '_', $id);
-		return $id;
-	}
+	public function generateReport($visitor_type, $results){
 
-	public function processFulltext($text){
+		$today = date("Ymd"); // e.g., 20250731
+		$fileName = PHY_REPORTS_URL . "visitors_" . $visitor_type . "_" . $today . ".csv";
+		$csv = fopen($fileName, "w");
+		$headers = $this->getHeadersForReport($visitor_type);
+		fputcsv($csv, $headers); // headers
 
-		$text = preg_replace('/\s+/', ' ', $text);
-		//~ $text = $this->praja2Unicode($text);
-		return $text;
-	}
-
-	public function xml2Json() {
-
-		$xml = simplexml_load_file(PHY_METADATA_URL . PRASADA . '/prasada.xml');
-
-		foreach ($xml->issue as $issue) {
-			
-			$completeIssue = [];
-	
-			foreach ($issue->entry as $entry) {
-
-				$completeIssue['volume'] = (string)$issue['vnum'];
-				$completeIssue['issue'] = (string)$issue['inum'];
-				$completeIssue['year'] = (string)$issue['year'];
-				$completeIssue['month'] = (string)$issue['month'];
-				$completeIssue['mname'] = (string)$issue['mname'];
-				$completeIssue['id'] = PRASADA . '/' . $completeIssue['year'] . '/' . $completeIssue['month'];
-				
-				$array = [];
-				$array['title'] = $entry->title->__toString();
-				$array['page'] = $entry->page->__toString();
-				$jsonFilePath = PHY_METADATA_URL . PRASADA . '/' . $completeIssue['year'] . '/' . $completeIssue['month'] . '/';
-				
-				if(preg_match('/0.*\-0.*/', $array['page'], $matches)){
-
-					$splitPage = explode('-', $array['page']);
-					$files = glob($jsonFilePath . "text/*.txt");
-					$articleStartOffset = array_search($jsonFilePath . 'text/' . $splitPage[0] . '.txt', $files);
-					$articleEndOffset = array_search($jsonFilePath . 'text/' . $splitPage[1] . '.txt', $files) + 1;
-					$textFiles = array_slice($files, $articleStartOffset, $articleEndOffset - $articleStartOffset);
-					$array['relativePageNumber'] = (array_search($jsonFilePath . 'text/' . $splitPage[0] . '.txt', $files)) ? array_search($jsonFilePath . 'text/' . $splitPage[0] . '.txt', $files)+1 : 1;
-					$array['relativePageRange'] = $array['relativePageNumber'] . '-' . (array_search($jsonFilePath . 'text/' . $splitPage[1] . '.txt', $files)+1);
-						
-					$textArray = [];
-					$array['fullText'] = [];
-					foreach ($textFiles as $textFile) {
-
-						preg_match('/(.*)\/text\/(.*)\.txt/', $textFile, $matches);
-						$textArray['page'] = $matches[2];
-						$textArray['text'] = trim(file_get_contents($textFile));
-						array_push($array['fullText'], $textArray);
-					}
-				}
-
-				if($entry->author != ''){
-					foreach ($entry->author as $author) {
-
-						$arrayArthor = [];
-						$arrayArthor['name'] = $author->__toString();
-						$array['author'][] = $arrayArthor;
-					}
-				}
-
-				$completeIssue['toc'][] = $array;
-			}
-			
-			exec("mkdir -p " . $jsonFilePath);
-			$json = json_encode($completeIssue, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
-			file_put_contents($jsonFilePath . 'issue.json' , $json);
-		}
-	}
-
-	public function insertEntries($collection) {
-
-		$titleAlphabet = [];
-		$authorAlphabet = [];
-		$jsonFiles = $this->getFilesIteratively(PHY_METADATA_URL , $pattern = '/issue.json$/i');
-
-		foreach ($jsonFiles as $jsonFile) {
-
-			$contentString = file_get_contents($jsonFile);
-			$content = json_decode($contentString, true);
-
-			foreach ($content['toc'] as $article) {
-
-				$data = $content;
-				$data['Type'] = 'Journal';
-				if(isset($data['toc']))	unset($data['toc']);
-				$data = $data + $article;
-				$data['id'] = $data['id'];
-				$data = array_filter($data);
-				$result = $collection->insertOne($data);
-
-				// fetching initial letter from author
-				if(isset($article['author'])) {
-
-					foreach ($article['author'] as $author) 
-					array_push($authorAlphabet, preg_replace('/(^.).*/u', '$1', $author['name']));
-				}
-
-				// fetching initial letter from title
-				array_push($titleAlphabet, preg_replace('/(^.).*/u', '$1', $article['title']));
-			}
+		foreach ($results as $doc) {
+			$data = $this->getDataFromDoc($headers,$doc);
+		    fputcsv($csv, $data);
 		}
 
-		sort($titleAlphabet); sort($authorAlphabet);
-		$this->insertAlphabet(array_unique($titleAlphabet), array_unique($authorAlphabet));
+		fclose($csv);
+
+		return $fileName;
 	}
 
-	public function insertAlphabet($titleAlphabet, $authorAlphabet) {
+	public function getHeadersForReport($visitor_type){
+
+		$visitors = [
+			'alumnus' => ['visitor_type', 'visitor_name', 'visitor_count', 'email', 'phonenumber', 'batch', 'branch', 'hostel', 'sign_in_date', 'sign_in_time', 'exhibits', 'otherexhibit', 'feedback', 'sign_out_date', 'sign_out_time'],
+			'faculty' => ['visitor_type', 'visitor_name', 'visitor_count', 'email', 'phonenumber', 'department', 'sign_in_date', 'sign_in_time', 'exhibits', 'otherexhibit', 'feedback', 'sign_out_date', 'sign_out_time'],
+			'student' => ['visitor_type', 'visitor_name', 'visitor_count', 'email', 'phonenumber', 'rollnumber','hostel', 'sign_in_date', 'sign_in_time', 'exhibits', 'otherexhibit', 'feedback', 'sign_out_date', 'sign_out_time'],
+			'resident' => ['visitor_type', 'visitor_name', 'visitor_count', 'email', 'phonenumber', 'relationship', 'sign_in_date', 'sign_in_time', 'exhibits', 'otherexhibit', 'feedback', 'sign_out_date', 'sign_out_time'],
+	   		'staff' => ['visitor_type', 'visitor_name', 'visitor_count', 'email', 'phonenumber', 'designation', 'sign_in_date', 'sign_in_time', 'exhibits', 'otherexhibit', 'feedback', 'sign_out_date', 'sign_out_time'],
+	   		'other' => ['visitor_type', 'visitor_name', 'visitor_count', 'email', 'phonenumber', 'sign_in_date', 'sign_in_time', 'exhibits', 'otherexhibit', 'feedback', 'sign_out_date', 'sign_out_time'],
+		];
+
+		return $visitors[$visitor_type];
+
+	}
+
+	public function getDataFromDoc($headers, $doc){
 
 		$data = [];
-		$db = $this->db->useDB();
-		$collection = $this->db->createCollection($db, ALPHABET_COLLECTION);
-		$data['title'] = array_values($titleAlphabet);
-		$data['author'] = array_values($authorAlphabet);
 
-		$result = $collection->insertOne($data);
+		for($i=0;$i<sizeof($headers);$i++){
+
+			if($headers[$i] == 'exhibits'){
+				if(isset($doc["exhibits"]))	
+					$csvString = implode(',', iterator_to_array($doc["exhibits"]));
+				else 
+					$csvString = '';
+
+				$data[$i] = $csvString;
+			}
+			else
+				$data[$i] = $doc[$headers[$i]] ?? '';
+		}
+
+		return $data;
 	}
+
 	
 }
 

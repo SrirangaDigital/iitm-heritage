@@ -286,6 +286,49 @@ class data extends Controller {
 
 	}
 
+	public function report($query=[],$visitor_type = ''){
+
+
+		$visitorsList = ['alumnus','faculty','student','resident','staff','other'];
+
+		if($visitor_type == '' || !in_array($visitor_type, $visitorsList)) {
+			echo 'Visitor type is empty or visitor type should be either alumnus or faculty or student or resident or staff or other to generate report';
+			exit(0);
+		}
+
+
+		$db = $this->model->db->useDB();
+		$collection = $this->model->db->selectCollection($db, VISITOR_COLLECTION);
+		$results = [];
+
+		if($visitor_type != 'other')
+			$filter = ['visitor_type' => $visitor_type];
+		else
+			$filter = ['visitor_type' => ['$nin' => ['alumnus','faculty','student','resident','staff']]];
+
+		try {
+
+				$cursor = $collection->find($filter);
+
+				foreach ($cursor as $document) {
+					if(isset($document->id)){
+						unset($document["_id"]);
+						unset($document["id"]);
+					    $results[] = (array) $document;
+					}
+				}
+
+
+				$csvFile = $this->model->generateReport($visitor_type, $results);
+				echo "Report generated, please check the file " . $csvFile;
+
+			} catch (Exception $e) {
+
+			  echo "Error in generating report: " . $e;
+			}
+		
+	}
+
 
 }
 
