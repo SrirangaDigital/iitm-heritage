@@ -292,8 +292,9 @@ class data extends Controller {
 		$visitorsList = ['alumnus','faculty','student','resident','staff','other'];
 
 		if($visitor_type == '' || !in_array($visitor_type, $visitorsList)) {
-			echo 'Visitor type is empty or visitor type should be either alumnus or faculty or student or resident or staff or other to generate report';
-			exit(0);
+			$data['msg'] = 'Visitor type should be either alumnus / faculty / student / resident / staff / other';
+			$this->view('error/report', $data);
+			return;
 		}
 
 
@@ -320,7 +321,9 @@ class data extends Controller {
 
 
 				$csvFile = $this->model->generateReport($visitor_type, $results);
-				echo "Report generated, please check the file " . $csvFile;
+				$data['url'] = PUBLIC_URL . $csvFile;
+				$data['msg'] = 'Click here to download the report';
+				$this->view('reports/download', $data);
 
 			} catch (Exception $e) {
 

@@ -101,7 +101,7 @@ class dataModel extends Model {
 
 		fclose($csv);
 
-		return $fileName;
+		return str_replace(PHY_PUBLIC_URL, '', $fileName);
 	}
 
 	public function getHeadersForReport($visitor_type){
