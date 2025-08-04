@@ -76,6 +76,10 @@ class data extends Controller {
 		elseif($view_type == 12){
 			$_SESSION['formdata']['visitor_type'] = 'student';
 			$this->view('forms/student-1', $data);		
+		}		
+		elseif($view_type == '12a'){
+			$_SESSION['formdata']['visitor_type'] = 'student';
+			$this->view('forms/student-1a', $data);		
 		}
 		elseif($view_type == 13){
 			$_SESSION['formdata']['visitor_type'] = 'student';

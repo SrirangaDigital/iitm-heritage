@@ -62,7 +62,7 @@ else
                 <div class="secondhalf">        
                     <div class="form-group my-5">
                         <input type="hidden" id="view_type" name="view_type" value="6">
-                        <a href="<?=BASE_URL?>data/sign_in/12" class="btn my-nxt-blue-button">Previous</a>
+                        <a href="<?=BASE_URL?>data/sign_in/12a" class="btn my-nxt-blue-button">Previous</a>
                         <button type="submit" class="btn my-nxt-blue-button">Next</button>
                     </div>
                 </div>            

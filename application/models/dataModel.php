@@ -28,7 +28,7 @@ class dataModel extends Model {
 		$visitorTypeFields = [
 			'alumnus'=>['batch','branch','hostel'],
 			'faculty'=>['department'],
-			'student'=>['rollnumber','hostel'],
+			'student'=>['rollnumber','department','hostel'],
 			'resident'=>['relationship'],
 			'staff'=>['designation']
 		];
@@ -109,7 +109,7 @@ class dataModel extends Model {
 		$visitors = [
 			'alumnus' => ['visitor_type', 'visitor_name', 'visitor_count', 'email', 'phonenumber', 'batch', 'branch', 'hostel', 'sign_in_date', 'sign_in_time', 'exhibits', 'otherexhibit', 'feedback', 'sign_out_date', 'sign_out_time'],
 			'faculty' => ['visitor_type', 'visitor_name', 'visitor_count', 'email', 'phonenumber', 'department', 'sign_in_date', 'sign_in_time', 'exhibits', 'otherexhibit', 'feedback', 'sign_out_date', 'sign_out_time'],
-			'student' => ['visitor_type', 'visitor_name', 'visitor_count', 'email', 'phonenumber', 'rollnumber','hostel', 'sign_in_date', 'sign_in_time', 'exhibits', 'otherexhibit', 'feedback', 'sign_out_date', 'sign_out_time'],
+			'student' => ['visitor_type', 'visitor_name', 'visitor_count', 'email', 'phonenumber', 'rollnumber', 'department', 'hostel', 'sign_in_date', 'sign_in_time', 'exhibits', 'otherexhibit', 'feedback', 'sign_out_date', 'sign_out_time'],
 			'resident' => ['visitor_type', 'visitor_name', 'visitor_count', 'email', 'phonenumber', 'relationship', 'sign_in_date', 'sign_in_time', 'exhibits', 'otherexhibit', 'feedback', 'sign_out_date', 'sign_out_time'],
 	   		'staff' => ['visitor_type', 'visitor_name', 'visitor_count', 'email', 'phonenumber', 'designation', 'sign_in_date', 'sign_in_time', 'exhibits', 'otherexhibit', 'feedback', 'sign_out_date', 'sign_out_time'],
 	   		'other' => ['visitor_type', 'visitor_name', 'visitor_count', 'email', 'phonenumber', 'sign_in_date', 'sign_in_time', 'exhibits', 'otherexhibit', 'feedback', 'sign_out_date', 'sign_out_time'],
@@ -131,10 +131,12 @@ class dataModel extends Model {
 				else 
 					$csvString = '';
 
-				$data[$i] = $csvString;
+				$data[$i] = html_entity_decode($csvString);
 			}
-			else
+			else{
 				$data[$i] = $doc[$headers[$i]] ?? '';
+				$data[$i] = html_entity_decode($data[$i]);
+			}
 		}
 
 		return $data;
