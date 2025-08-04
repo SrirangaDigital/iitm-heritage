@@ -33,7 +33,7 @@ else
                               <option value="Data Science &amp; Artificial Intelligence" <?= $viewHelper->checkValue('branch', 'Data Science & Artificial Intelligence') ?>>Data Science &amp; Artificial Intelligence</option>
                               <option value="Electrical Engineering" <?= (isset($_SESSION['formdata']['branch']) && $_SESSION['formdata']['branch'] == 'Electrical Engineering') ? 'selected' : '' ?>>Electrical Engineering</option>
                               <option value="Engineering Design" <?= (isset($_SESSION['formdata']['branch']) && $_SESSION['formdata']['branch'] == 'Engineering Design') ? 'selected' : '' ?>>Engineering Design</option>
-                              <option value="Healthcare Technology" <?= (isset($_SESSION['formdata']['branch']) && $_SESSION['formdata']['branch'] == 'Healthcare Technology') ? 'selected' : '' ?>>Healthcare Technology</option>
+                              <option value="Medical Sciences and Technology" <?= (isset($_SESSION['formdata']['branch']) && $_SESSION['formdata']['branch'] == 'Medical Sciences and Technology') ? 'selected' : '' ?>>Medical Sciences and Technology</option>
                               <option value="Humanities &amp; Social Sciences" <?= $viewHelper->checkValue('branch', 'Humanities & Social Sciences') ?>>Humanities &amp; Social Sciences</option>
                               <option value="Management Studies" <?= (isset($_SESSION['formdata']['branch']) && $_SESSION['formdata']['branch'] == 'Management Studies') ? 'selected' : '' ?>>Management Studies</option>
                               <option value="Mathematics" <?= (isset($_SESSION['formdata']['branch']) && $_SESSION['formdata']['branch'] == 'Mathematics') ? 'selected' : '' ?>>Mathematics</option>
