@@ -6,3 +6,4 @@ vendor/
 *.txt
 .DS*
 from_client/*
+public/reports
