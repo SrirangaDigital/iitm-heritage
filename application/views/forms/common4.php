@@ -22,8 +22,8 @@
                     </div>    
                     <p class="form-text">Click submit when you are ready to explore.<br />Don't forget to sign out when you leave.</p>
                 </div>
-                <div class="secondhalf">
-                    <div class="form-group my-5">
+                <div class="secondhalf my-5">
+                    <div class="form-group">
                         <input type="hidden" id="view_type" name="view_type" value="8">
                         <input type="hidden" id="timestamp" name="timestamp" value="">
                         <a href="<?=BASE_URL?>data/sign_in/6" class="btn my-nxt-blue-button">Previous</a>

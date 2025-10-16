@@ -22,8 +22,8 @@
                     </div>
                     <p>We look forward to seeing you again!</p>
                 </div>    
-                <div class="secondhalf">
-                    <div class="form-group my-5">
+                <div class="secondhalf my-5">
+                    <div class="form-group">
                         <input type="hidden" id="view_type" name="view_type" value="4">
                         <a href="<?=BASE_URL?>data/sign_out/<?=$data[0]['id']?>/2" class="btn my-nxt-red-button">Previous</a>
                         <button type="submit" class="btn my-nxt-red-button my-nxt-red-button-selected">Sign Out</button>

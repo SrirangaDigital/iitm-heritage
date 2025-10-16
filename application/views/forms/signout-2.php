@@ -95,8 +95,8 @@
 
 </div>
 
-<div class="secondhalfpr">
-  <div class="form-group my-5">
+<div class="secondhalfpr my-5">
+  <div class="form-group">
       <input type="hidden" id="view_type" name="view_type" value="2">
       <a href="<?=BASE_URL?>data/profiles" class="btn my-nxt-red-button">Previous</a>
       <button type="submit" class="btn my-nxt-red-button">Next</button>
