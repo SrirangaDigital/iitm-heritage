@@ -102,23 +102,35 @@ class data extends Controller {
 		$results = [];
 
 		try {
-			$cursor = $collection->find([
-			    'sign_out_date' => ['$exists' => false],
-			    'sign_out_time' => ['$exists' => false],
-			]);
+				$cursor = $collection->find([
+				    'sign_out_date' => ['$exists' => false],
+				    'sign_out_time' => ['$exists' => false],
+				]);
 
+				$visitors = iterator_to_array($cursor);
 
-			foreach ($cursor as $document) {
-				if(isset($document->id))
-				    $results[] = (array) $document;
+				usort($visitors, function($a, $b) {
+				    
+				    // Skip if date fields are missing
+				    if (!isset($a['sign_in_date']) || !isset($b['sign_in_date'])) return 0;
+
+				    $timestampA = strtotime($a['sign_in_date'] . ' ' . $a['sign_in_time']);
+				    $timestampB = strtotime($b['sign_in_date'] . ' ' . $b['sign_in_time']);
+				    
+				    return $timestampB - $timestampA; // Sorts descending (Latest first)
+				});
+
+				foreach ($visitors as $document) {
+					if(isset($document->id))
+					    $results[] =  $document;
+				}
+
+				$success = true;
+
+			} catch (Exception $e) {
+    			$results["msg"] = $e->getMessage();
+				$success = false;
 			}
-			
-			$success = true;
-
-		} catch (Exception $e) {
-    		$results["msg"] = $e->getMessage();
-			$success = false;
-		}
 
 
 		if(empty($results)){
@@ -129,8 +141,6 @@ class data extends Controller {
 		} else{
 			$this->view('error/profiles', $results);			
 		}
-
-
 
 	}
 
