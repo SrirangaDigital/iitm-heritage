@@ -346,6 +346,120 @@ class data extends Controller {
 		
 	}
 
+	public function getDuplicates($query=[]){
+
+		try {
+		    // 1. Connect to your Local MongoDB instance
+
+			$db = $this->model->db->useDB();
+			$collection = $this->model->db->selectCollection($db, VISITOR_COLLECTION);
+
+		    // 2. Define the aggregation pipeline to find stuck duplicates
+		    $pipeline = [
+		        [
+		            '$match' => [
+		                '$or' => [
+		                    ['sign_out_date' => ['$exists' => false]],
+		                    ['sign_out_date' => null]
+		                ]
+		            ]
+		        ],
+		        [
+		            '$group' => [
+		                '_id' => [
+		                    'visitor_name' => '$visitor_name',
+		                    'sign_in_date' => '$sign_in_date',
+		                    'sign_in_time' => '$sign_in_time'
+		                ],
+		                'count' => ['$sum' => 1]
+		            ]
+		        ],
+		        [
+		            '$match' => [
+		                'count' => ['$gt' => 1] // Only grab rows repeating more than once
+		            ]
+		        ]
+		    ];
+
+		    $duplicates = $collection->aggregate($pipeline);
+
+		    return $duplicates;
+
+		} catch (Exception $e) {
+		    echo "An error occurred: " . $e->getMessage();
+		}
+
+	}
+
+	public function listduplicates($query=[]){
+
+		$duplicates = $this->getDuplicates();
+		$resultsArray = $duplicates->toArray();
+		
+		if (empty($resultsArray)) {
+ 		   echo "No duplicate active visitors found.";
+		} else {
+			foreach ($resultsArray as $row) {
+	    		// Accessing fields from the nested _id object
+	    		$name = $row->_id->visitor_name;
+	    		$count = $row->count;
+	    
+	    		echo "<li><strong>Visitor:</strong> {$name} | <strong>Repeats:</strong> {$count} times</li>";
+			}
+		}
+
+	}
+
+	public function logoutduplicates(){
+
+		try {
+		    // 1. Connect to your Local MongoDB instance
+
+			$db = $this->model->db->useDB();
+			$collection = $this->model->db->selectCollection($db, VISITOR_COLLECTION);
+
+		    // 2. Generate today's date and time formats dynamically matching your DB structure
+		    $currentDateStr = date('d F Y'); // Output format: "24 May 2026"
+		    $currentTimeStr = date('H:i');   // Output format: "12:05"
+
+		    $duplicates = $this->getDuplicates();
+
+		    $totalUpdatedGroups = 0;
+
+		    // 3. Loop through the duplicate sets and log them out
+		    foreach ($duplicates as $doc) {
+		        $updateResult = $collection->updateMany(
+		            [
+		                'visitor_name' => $doc->_id->visitor_name,
+		                'sign_in_date' => $doc->_id->sign_in_date,
+		                'sign_in_time' => $doc->_id->sign_in_time,
+		                '$or' => [
+		                    ['sign_out_date' => ['$exists' => false]],
+		                    ['sign_out_date' => null]
+		                ]
+		            ],
+		            [
+		                '$set' => [
+		                    'sign_out_date' => $currentDateStr,
+		                    'sign_out_time' => $currentTimeStr
+		                ]
+		            ]
+		        );
+
+		        echo "Successfully logged out " . $updateResult->getModifiedCount() . " duplicate entries for: " . $doc->_id->visitor_name . "<br>\n";
+		        $totalUpdatedGroups++;
+		    }
+
+		    if ($totalUpdatedGroups === 0) {
+		        echo "No repeating active visitor entries found to log out today.\n";
+		    }
+
+		} catch (Exception $e) {
+		    echo "An error occurred: " . $e->getMessage();
+		}
+
+	}
+
 
 }
 
