@@ -27,7 +27,7 @@
                         <input type="hidden" id="view_type" name="view_type" value="8">
                         <input type="hidden" id="timestamp" name="timestamp" value="">
                         <a href="<?=BASE_URL?>data/sign_in/6" class="btn my-nxt-blue-button">Previous</a>
-                        <button type="submit" class="btn my-nxt-blue-button my-nxt-blue-button-selected">Submit</button>
+                        <button type="submit" class="btn my-nxt-blue-button my-nxt-blue-button-selected" id="submitbtn">Submit</button>
                     </div>
                 </div>    
             </form>
@@ -79,7 +79,14 @@
       // Optional: show red border
       if (!dateVal) document.getElementById("sign_in_date").style.border = "2px solid #2196F3";
       if (!timeVal) document.getElementById("sign_in_time").style.border = "2px solid #2196F3";
+        
+      return ; // Exit early so we don't disable the button on a failed validation
     }
+
+    const submitBtn = this.querySelector('button[type="submit"]') || document.getElementById("submitbtn");
+    if (submitBtn)
+        submitBtn.disabled = true;
+
   });
 
 

@@ -26,7 +26,7 @@
                     <div class="form-group">
                         <input type="hidden" id="view_type" name="view_type" value="4">
                         <a href="<?=BASE_URL?>data/sign_out/<?=$data[0]['id']?>/2" class="btn my-nxt-red-button">Previous</a>
-                        <button type="submit" class="btn my-nxt-red-button my-nxt-red-button-selected">Sign Out</button>
+                        <button type="submit" class="btn my-nxt-red-button my-nxt-red-button-selected" id="submitbtn">Sign Out</button>
                     </div>
                 </div>            
             </form>
@@ -77,7 +77,13 @@ document.getElementById("myForm").addEventListener("submit", function(e) {
       // Optional: show red border
       if (!dateVal) document.getElementById("sign_out_date").style.border = "2px solid red";
       if (!timeVal) document.getElementById("sign_out_time").style.border = "2px solid red";
+
+      return; // Exit early so we don't disable the button on a failed validation
     }
+
+    const submitBtn = this.querySelector('button[type="submit"]') || document.getElementById("submitbtn");
+    if (submitBtn)
+        submitBtn.disabled = true;
   });
 
 </script>
