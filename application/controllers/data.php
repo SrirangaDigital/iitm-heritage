@@ -260,7 +260,13 @@ class data extends Controller {
 		try {
 
 				$result = $collection->updateOne(
-				    ['id' => $id],        
+					[
+        				'id' => $id, // Your original filter
+        				'$or' => [   // The active/logged-in condition
+            						['sign_out_date' => ['$exists' => false]],
+            						['sign_out_date' => null]
+        						 ]
+    				],
 				    ['$set' => $data]     
 				);
 
@@ -271,7 +277,6 @@ class data extends Controller {
     			$status["msg"] = $e->getMessage();
 				$status['result'] = false;
 			}
-
 
 		return $status;
 	}
