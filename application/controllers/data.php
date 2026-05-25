@@ -465,6 +465,53 @@ class data extends Controller {
 
 	}
 
+	public function logoutall(){
+
+		try{
+			// 1. Connect to your MongoDB instance
+			$db = $this->model->db->useDB();
+			$collection = $this->model->db->selectCollection($db, VISITOR_COLLECTION);
+
+			// 2. Generate today's current date and time dynamically
+	    	$currentDateStr = date('d F Y'); // e.g., "25 May 2026"
+	    	$currentTimeStr = date('H:i');   // e.g., "17:32"
+
+		    // 3. Define the filter for ANY entry that doesn't have a sign-out record
+		    $filter = [
+		        '$or' => [
+		            ['sign_out_date' => ['$exists' => false]],
+		            ['sign_out_date' => null]
+		        ]
+		    ];
+
+			// 4. Update payload setting today's checkout details
+	    	$updateData = [
+	        		'$set' => [
+	            		'sign_out_date' => $currentDateStr,
+	            		'sign_out_time' => $currentTimeStr
+	        		]
+	    		];
+
+			// 5. Execute the update across the entire collection
+	    	$updateResult = $collection->updateMany($filter, $updateData);
+
+	    	// 6. Output the results
+	    	$count = $updateResult->getModifiedCount();
+	    	if ($count > 0) {
+	        	echo "<h3>Mass Logout Complete!</h3>";
+	        	echo "Successfully signed out <strong>{$count}</strong> active visitor sessions.<br>";
+	        	echo "Timestamp applied: {$currentDateStr} at {$currentTimeStr}";
+	    	} else {
+	        	echo "<h3>All clear!</h3>";
+	        	echo "No active or un-logged visitor entries were found in the database.";
+	    	}
+	    }
+	    catch (Exception $e) {
+ 		   echo "An error occurred during execution: " . $e->getMessage();
+		}	
+
+	}
+
 
 }
 
